@@ -95,11 +95,30 @@
         .btn { display: block; width: 100%; background: linear-gradient(135deg, #25d366, #128c7e); color: white; text-align: center; padding: 0.9rem; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); border: none; cursor: pointer; }
 
         .hidden { display: none !important; }
+        
+        /* نافذة رسائل عائمة احترافية (Modal) بدلاً من الـ Alert العادية */
+        #customModal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        #customModal.show { opacity: 1; pointer-events: auto; }
+        .modal-content { background: var(--card-bg); border: 2px solid var(--accent); padding: 2rem; border-radius: 16px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.3); transform: translateY(-20px); transition: transform 0.3s ease; }
+        #customModal.show .modal-content { transform: translateY(0); }
+        .modal-content h3 { color: var(--accent); margin-bottom: 1rem; font-size: 1.4rem; }
+        .modal-content p { color: var(--text-main); font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.5; }
+        .modal-btn { background: var(--accent); color: #fff; border: none; padding: 0.7rem 2rem; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 15px var(--accent-glow); width: 100%; }
+
         footer { background: var(--primary); color: var(--text-muted); text-align: center; padding: 2rem; margin-top: 4rem; border-top: 1px solid rgba(255,255,255,0.05); }
         .whatsapp-float { position: fixed; bottom: 25px; left: 25px; background: #25d366; color: white; padding: 14px 24px; border-radius: 50px; font-weight: bold; text-decoration: none; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); z-index: 100; display: flex; align-items: center; gap: 8px; }
     </style>
 </head>
 <body>
+
+    <!-- نافذة الرسائل المنبثقة الشيك -->
+    <div id="customModal">
+        <div class="modal-content">
+            <h3 id="modalTitle">منصة الأستاذ رمضان عطية</h3>
+            <p id="modalMessage">محتوى الرسالة هنا</p>
+            <button class="modal-btn" onclick="closeModal()">حسناً 👍</button>
+        </div>
+    </div>
 
     <header>
         <div>
@@ -282,6 +301,17 @@
         const ADMIN_USER = "admin";
         const ADMIN_PASS = "ramadan2026";
 
+        // دالة عرض رسالة منبثقة شيك بدلاً من alert
+        function showModal(title, message) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalMessage').innerText = message;
+            document.getElementById('customModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('customModal').classList.remove('show');
+        }
+
         // تشغيل نظام الألوان المحفوظ مسبقاً
         if (localStorage.getItem('theme') === 'light') {
             document.body.classList.add('light-mode');
@@ -317,19 +347,19 @@
             const pass = document.getElementById('regPass').value;
 
             if(!name || !nationalId || !email || !phone || !parent || !pass) {
-                alert('من فضلك، املأ كل البيانات يا بطل!');
+                showModal('تنبيه هام ⚠️', 'من فضلك، املأ كل البيانات المطلوبة يا بطل!');
                 return;
             }
 
             if(!/^\d{14}$/.test(nationalId)) {
-                alert('الرقم القومي غير صحيح! يجب أن يكون مكوناً من 14 رقماً.');
+                showModal('خطأ في الرقم القومي ❌', 'الرقم القومي غير صحيح! يجب أن يكون مكوناً من 14 رقماً.');
                 return;
             }
 
             let students = JSON.parse(localStorage.getItem('platform_students')) || [];
             const exists = students.some(s => s.phone === phone || s.nationalId === nationalId);
             if(exists) {
-                alert('هذا الحساب أو الرقم القومي مسجل مسبقاً!');
+                showModal('حساب مسجل مسبقاً ⚠️', 'هذا الرقم أو الرقم القومي مسجل من قبل!');
                 return;
             }
 
@@ -338,8 +368,8 @@
             localStorage.setItem('current_user_phone', phone);
             localStorage.setItem('current_user_type', 'student');
             
-            alert('تم إنشاء الحساب وتسجيل الدخول بنجاح!');
-            checkLogin();
+            showModal('مبارك يا بطل 🎉', 'تم إنشاء الحساب وتسجيل الدخول بنجاح!');
+            setTimeout(() => { closeModal(); checkLogin(); }, 1200);
         }
 
         function loginUser() {
@@ -348,7 +378,8 @@
 
             if(userInput === ADMIN_USER && pass === ADMIN_PASS) {
                 localStorage.setItem('current_user_type', 'admin');
-                checkLogin();
+                showModal('أهلاً بالمدير 👑', 'تم تسجيل الدخول للوحة التحكم بنجاح.');
+                setTimeout(() => { closeModal(); checkLogin(); }, 1000);
                 return;
             }
 
@@ -358,10 +389,10 @@
             if(student) {
                 localStorage.setItem('current_user_phone', student.phone);
                 localStorage.setItem('current_user_type', 'student');
-                alert(`أهلاً بيك يا ${student.name} نورت المنصة!`);
-                checkLogin();
+                showModal('أهلاً بك يا بطل ⭐', `مرحباً بك يا ${student.name} نورت المنصة!`);
+                setTimeout(() => { closeModal(); checkLogin(); }, 1000);
             } else {
-                alert('بيانات الدخول خطأ، أو أن الحساب غير مسجل!');
+                showModal('خطأ في الدخول ❌', 'بيانات الدخول خطأ، تأكد من رقم الموبايل وكلمة المرور!');
             }
         }
 
@@ -406,7 +437,7 @@
             const tbody = document.getElementById('studentsTableBody');
             tbody.innerHTML = '';
 
-            if(students.length === 0) {
+icon:            if(students.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-muted);">لا يوجد طلاب مسجلين حتى الآن.</td></tr>`;
                 return;
             }
@@ -444,7 +475,7 @@
             const subject = type === 'geo' ? 'الجغرافيا السياسية' : 'التاريخ للبكالوريا';
 
             if(!refInput) {
-                alert('من فضلك اكتب رقم عملية التحويل!');
+                showModal('تنبيه هام ⚠️', 'من فضلك اكتب رقم عملية التحويل أولاً!');
                 return;
             }
 
