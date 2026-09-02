@@ -3,115 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الأستاذ رمضان عطية | لوحة التحكم والمدير</title>
+    <title>منصة الأستاذ رمضان عطية | عملاق الجغرافيا والتاريخ</title>
     <style>
         :root { 
-            --primary: #0f172a; 
+            --primary: #0b1120; 
             --secondary: #1e293b;
             --accent: #f59e0b; 
-            --accent-glow: rgba(245, 158, 11, 0.3);
-            --bg: #090d16; 
-            --card-bg: #131c31;
+            --accent-glow: rgba(245, 158, 11, 0.4);
+            --bg: #030712; 
+            --card-bg: rgba(17, 24, 39, 0.85);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --danger: #ef4444;
-            --input-bg: #0f172a;
+            --input-bg: #0b1120;
             --input-border: #334155;
-            --table-hover: rgba(255,255,255,0.02);
+            --table-hover: rgba(255,255,255,0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
         }
 
-        /* إعدادات الوضع الفاتح (Light Mode) */
         body.light-mode {
             --primary: #1e293b;
             --secondary: #334155;
             --accent: #d97706;
-            --accent-glow: rgba(217, 119, 6, 0.2);
-            --bg: #f1f5f9;
-            --card-bg: #ffffff;
+            --accent-glow: rgba(217, 119, 6, 0.25);
+            --bg: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.9);
             --text-main: #0f172a;
             --text-muted: #64748b;
-            --input-bg: #f8fafc;
+            --input-bg: #f1f5f9;
             --input-border: #cbd5e1;
             --table-hover: rgba(0,0,0,0.02);
+            --glass-border: rgba(0, 0, 0, 0.06);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: background-color 0.3s ease, color 0.3s ease; }
-        body { background-color: var(--bg); color: var(--text-main); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
         
-        header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 2rem 1rem; text-align: center; border-bottom: 3px solid var(--accent); box-shadow: 0 10px 25px rgba(0,0,0,0.2); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-        header h1 { font-size: 2rem; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
-        header h1 span { color: var(--accent); }
-        
-        .header-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; }
-        .user-box { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); padding: 0.6rem 1.2rem; border-radius: 50px; font-size: 0.9rem; backdrop-filter: blur(5px); }
-        
-        /* زرار التبديل الشيك */
-        .theme-toggle-btn { background: var(--accent); color: #fff; border: none; padding: 0.6rem 1rem; border-radius: 50px; font-size: 0.9rem; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px var(--accent-glow); display: flex; align-items: center; gap: 6px; }
-        .theme-toggle-btn:hover { opacity: 0.9; }
+        body { 
+            background-color: var(--bg); 
+            color: var(--text-main); 
+            line-height: 1.6; 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-        .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; width: 100%; }
+        body::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: var(--accent-glow);
+            filter: blur(120px);
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            bottom: 20%;
+            left: -100px;
+            width: 350px;
+            height: 350px;
+            background: rgba(139, 92, 246, 0.15);
+            filter: blur(120px);
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
         
-        .auth-container { background: var(--card-bg); border: 1px solid rgba(245, 158, 11, 0.2); max-width: 450px; margin: 2rem auto; padding: 2.5rem 2rem; border-radius: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
-        .auth-container h2 { text-align: center; margin-bottom: 1.5rem; color: var(--accent); font-size: 1.8rem; }
-        .form-group { margin-bottom: 1.1rem; }
-        .form-group label { display: block; margin-bottom: 0.4rem; font-weight: 600; font-size: 0.85rem; color: var(--text-muted); }
-        .form-group input, .form-group select { width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--input-border); border-radius: 8px; font-size: 0.95rem; background: var(--input-bg); color: var(--text-main); }
-        .form-btn { width: 100%; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; border: none; padding: 0.9rem; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; margin-top: 1.2rem; box-shadow: 0 4px 15px var(--accent-glow); }
-        .switch-auth { text-align: center; margin-top: 1.2rem; font-size: 0.9rem; color: var(--text-muted); cursor: pointer; }
+        header { 
+            background: linear-gradient(135deg, var(--primary), var(--secondary)); 
+            color: white; 
+            padding: 2.2rem 1.5rem; 
+            text-align: center; 
+            border-bottom: 3px solid var(--accent); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            flex-wrap: wrap; 
+            gap: 1rem; 
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+        
+        header h1 { font-size: 2.2rem; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+        header h1 span { color: var(--accent); text-shadow: 0 0 20px var(--accent-glow); }
+        
+        .header-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; }
+        .user-box { background: rgba(255,255,255,0.08); border: 1px solid var(--glass-border); padding: 0.6rem 1.4rem; border-radius: 50px; font-size: 0.95rem; backdrop-filter: blur(8px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        
+        .theme-toggle-btn { 
+            background: linear-gradient(135deg, var(--accent), #d97706); 
+            color: #fff; 
+            border: none; 
+            padding: 0.65rem 1.2rem; 
+            border-radius: 50px; 
+            font-size: 0.9rem; 
+            font-weight: bold; 
+            cursor: pointer; 
+            box-shadow: 0 4px 15px var(--accent-glow); 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            transform: translateY(0);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .theme-toggle-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--accent-glow); }
+
+        .container { max-width: 1200px; margin: 2.5rem auto; padding: 0 1rem; width: 100%; z-index: 1; }
+        
+        .auth-container { 
+            background: var(--card-bg); 
+            border: 1px solid var(--glass-border); 
+            max-width: 460px; 
+            margin: 2rem auto; 
+            padding: 2.8rem 2.2rem; 
+            border-radius: 20px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25); 
+            backdrop-filter: blur(12px);
+        }
+        .auth-container h2 { text-align: center; margin-bottom: 1.8rem; color: var(--accent); font-size: 1.9rem; text-shadow: 0 2px 10px var(--accent-glow); }
+        
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: var(--text-muted); }
+        .form-group input, .form-group select { 
+            width: 100%; 
+            padding: 0.8rem 1.1rem; 
+            border: 1px solid var(--input-border); 
+            border-radius: 10px; 
+            font-size: 1rem; 
+            background: var(--input-bg); 
+            color: var(--text-main); 
+            outline: none;
+        }
+        .form-group input:focus, .form-group select:focus { 
+            border-color: var(--accent); 
+            box-shadow: 0 0 0 3px var(--accent-glow); 
+        }
+
+        .form-btn { 
+            width: 100%; 
+            background: linear-gradient(135deg, #f59e0b, #d97706); 
+            color: white; 
+            border: none; 
+            padding: 1rem; 
+            border-radius: 10px; 
+            font-size: 1.15rem; 
+            font-weight: bold; 
+            cursor: pointer; 
+            margin-top: 1.5rem; 
+            box-shadow: 0 6px 20px var(--accent-glow); 
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        .form-btn:hover { transform: translateY(-2px); opacity: 0.95; }
+        
+        .switch-auth { text-align: center; margin-top: 1.4rem; font-size: 0.95rem; color: var(--text-muted); cursor: pointer; }
         .switch-auth span { color: var(--accent); font-weight: bold; text-decoration: underline; }
 
-        /* لوحة تحكم الأدمن (الاونر) */
-        .admin-dashboard { background: var(--card-bg); border: 1px solid var(--accent); border-radius: 16px; padding: 2rem; box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-        .stat-card { background: var(--bg); border: 1px solid rgba(0,0,0,0.05); padding: 1.5rem; border-radius: 12px; text-align: center; border-bottom: 4px solid var(--accent); }
+        .admin-dashboard { 
+            background: var(--card-bg); 
+            border: 1px solid var(--glass-border); 
+            border-radius: 20px; 
+            padding: 2.5rem; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25); 
+            backdrop-filter: blur(12px); 
+        }
+        
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.8rem; margin-bottom: 2.5rem; }
+        .stat-card { 
+            background: var(--bg); 
+            border: 1px solid var(--glass-border); 
+            padding: 1.8rem; 
+            border-radius: 14px; 
+            text-align: center; 
+            border-bottom: 4px solid var(--accent); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+        .stat-card:hover { transform: translateY(-5px); }
         body.light-mode .stat-card { border: 1px solid #cbd5e1; }
-        .stat-card h3 { font-size: 2.2rem; color: var(--accent); margin-bottom: 0.3rem; }
-        .stat-card p { color: var(--text-muted); font-size: 0.95rem; }
+        .stat-card h3 { font-size: 2.5rem; color: var(--accent); margin-bottom: 0.4rem; font-weight: 800; text-shadow: 0 2px 10px var(--accent-glow); }
+        .stat-card p { color: var(--text-muted); font-size: 1rem; }
 
-        .table-container { overflow-x: auto; margin-top: 1.5rem; background: var(--bg); border-radius: 12px; padding: 1rem; border: 1px solid rgba(0,0,0,0.05); }
-        table { width: 100%; border-collapse: collapse; text-align: right; font-size: 0.9rem; }
-        th, td { padding: 12px 15px; border-bottom: 1px solid var(--input-border); color: var(--text-main); }
+        .table-container { overflow-x: auto; margin-top: 1.5rem; background: var(--bg); border-radius: 14px; padding: 1.2rem; border: 1px solid var(--glass-border); }
+        table { width: 100%; border-collapse: collapse; text-align: right; font-size: 0.95rem; }
+        th, td { padding: 14px 18px; border-bottom: 1px solid var(--input-border); color: var(--text-main); }
         th { background: var(--secondary); color: var(--accent); font-weight: bold; }
         tr:hover { background: var(--table-hover); }
-        .del-btn { background: var(--danger); color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; }
+        .del-btn { background: var(--danger); color: white; border: none; padding: 7px 14px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-weight: bold; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); transition: transform 0.2s ease; }
+        .del-btn:hover { transform: scale(1.05); }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
-        .card { background: var(--card-bg); border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .card-header { background: linear-gradient(135deg, var(--secondary), var(--primary)); color: white; padding: 2rem 1.5rem; text-align: center; font-size: 1.8rem; font-weight: bold; border-bottom: 4px solid var(--accent); }
-        .card-body { padding: 2rem 1.5rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.5rem; }
         
-        .syllabus-box { background: var(--bg); border-radius: 10px; padding: 1.2rem; margin-bottom: 1.5rem; border: 1px solid rgba(0,0,0,0.05); }
-        .syllabus-box h3 { font-size: 1.15rem; margin-bottom: 0.8rem; color: var(--accent); display: flex; align-items: center; gap: 6px; }
+        .card { 
+            background: var(--card-bg); 
+            border: 1px solid var(--glass-border); 
+            border-radius: 20px; 
+            overflow: hidden; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
+            backdrop-filter: blur(12px);
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 25px 50px rgba(0,0,0,0.3); }
+        
+        .card-header { background: linear-gradient(135deg, var(--secondary), var(--primary)); color: white; padding: 2.2rem 1.8rem; text-align: center; font-size: 1.9rem; font-weight: bold; border-bottom: 4px solid var(--accent); letter-spacing: 0.5px; }
+        .card-body { padding: 2.2rem 1.8rem; }
+        
+        .syllabus-box { background: var(--bg); border-radius: 12px; padding: 1.4rem; margin-bottom: 1.8rem; border: 1px solid var(--glass-border); }
+        .syllabus-box h3 { font-size: 1.2rem; margin-bottom: 1rem; color: var(--accent); display: flex; align-items: center; gap: 8px; }
         .lesson-list { list-style: none; }
-        .lesson-item { padding: 0.7rem 0.8rem; margin-bottom: 0.5rem; background: var(--card-bg); border-radius: 6px; font-size: 0.95rem; display: flex; justify-content: space-between; align-items: center; border-right: 3px solid var(--accent); box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
-        .lesson-item span { color: var(--text-muted); font-size: 0.85rem; background: var(--bg); padding: 2px 8px; border-radius: 4px; }
+        .lesson-item { padding: 0.8rem 1rem; margin-bottom: 0.6rem; background: var(--card-bg); border-radius: 8px; font-size: 0.98rem; display: flex; justify-content: space-between; align-items: center; border-right: 4px solid var(--accent); box-shadow: 0 3px 10px rgba(0,0,0,0.03); }
+        .lesson-item span { color: var(--text-muted); font-size: 0.85rem; background: var(--bg); padding: 3px 10px; border-radius: 6px; border: 1px solid var(--glass-border); }
 
-        .payment-section { background: var(--bg); border: 1px dashed var(--accent); padding: 1.5rem; border-radius: 12px; margin-top: 1.5rem; text-align: right; }
-        .payment-section h4 { color: var(--accent); margin-bottom: 0.8rem; font-size: 1.1rem; display: flex; align-items: center; gap: 6px; }
-        .payment-methods { display: flex; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap; }
-        .pay-badge { background: var(--card-bg); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; border: 1px solid var(--input-border); color: var(--text-main); }
-        .pay-input { width: 100%; padding: 0.7rem; background: var(--input-bg); border: 1px solid var(--input-border); border-radius: 6px; color: var(--text-main); margin-bottom: 0.8rem; font-size: 0.95rem; }
+        .payment-section { background: var(--bg); border: 2px dashed var(--accent); padding: 1.8rem; border-radius: 14px; margin-top: 1.8rem; text-align: right; }
+        .payment-section h4 { color: var(--accent); margin-bottom: 1rem; font-size: 1.15rem; display: flex; align-items: center; gap: 8px; }
+        .payment-methods { display: flex; gap: 10px; margin-bottom: 1.2rem; flex-wrap: wrap; }
+        .pay-badge { background: var(--card-bg); padding: 8px 14px; border-radius: 8px; font-size: 0.9rem; border: 1px solid var(--input-border); color: var(--text-main); box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+        .pay-input { width: 100%; padding: 0.8rem 1rem; background: var(--input-bg); border: 1px solid var(--input-border); border-radius: 8px; color: var(--text-main); margin-bottom: 1rem; font-size: 1rem; outline: none; }
+        .pay-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
         
-        .btn { display: block; width: 100%; background: linear-gradient(135deg, #25d366, #128c7e); color: white; text-align: center; padding: 0.9rem; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); border: none; cursor: pointer; }
+        .btn { display: block; width: 100%; background: linear-gradient(135deg, #25d366, #128c7e); color: white; text-align: center; padding: 1rem; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 1.1rem; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35); border: none; cursor: pointer; transition: transform 0.2s ease, opacity 0.2s ease; }
+        .btn:hover { transform: translateY(-2px); opacity: 0.95; }
 
         .hidden { display: none !important; }
         
-        /* نافذة رسائل عائمة احترافية (Modal) بدلاً من الـ Alert العادية */
-        #customModal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        #customModal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.65); backdrop-filter: blur(6px); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
         #customModal.show { opacity: 1; pointer-events: auto; }
-        .modal-content { background: var(--card-bg); border: 2px solid var(--accent); padding: 2rem; border-radius: 16px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.3); transform: translateY(-20px); transition: transform 0.3s ease; }
+        .modal-content { background: var(--card-bg); border: 2px solid var(--accent); padding: 2.2rem; border-radius: 20px; width: 90%; max-width: 420px; text-align: center; box-shadow: 0 25px 50px rgba(0,0,0,0.4); transform: translateY(-20px); transition: transform 0.3s ease; backdrop-filter: blur(12px); }
         #customModal.show .modal-content { transform: translateY(0); }
-        .modal-content h3 { color: var(--accent); margin-bottom: 1rem; font-size: 1.4rem; }
-        .modal-content p { color: var(--text-main); font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.5; }
-        .modal-btn { background: var(--accent); color: #fff; border: none; padding: 0.7rem 2rem; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 15px var(--accent-glow); width: 100%; }
+        .modal-content h3 { color: var(--accent); margin-bottom: 1.2rem; font-size: 1.5rem; text-shadow: 0 2px 10px var(--accent-glow); }
+        .modal-content p { color: var(--text-main); font-size: 1.05rem; margin-bottom: 1.8rem; line-height: 1.6; }
+        .modal-btn { background: linear-gradient(135deg, var(--accent), #d97706); color: #fff; border: none; padding: 0.8rem 2rem; border-radius: 10px; font-weight: bold; font-size: 1.05rem; cursor: pointer; box-shadow: 0 6px 20px var(--accent-glow); width: 100%; transition: transform 0.2s ease; }
+        .modal-btn:hover { transform: translateY(-2px); }
 
-        footer { background: var(--primary); color: var(--text-muted); text-align: center; padding: 2rem; margin-top: 4rem; border-top: 1px solid rgba(255,255,255,0.05); }
-        .whatsapp-float { position: fixed; bottom: 25px; left: 25px; background: #25d366; color: white; padding: 14px 24px; border-radius: 50px; font-weight: bold; text-decoration: none; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); z-index: 100; display: flex; align-items: center; gap: 8px; }
+        footer { background: var(--primary); color: var(--text-muted); text-align: center; padding: 2.5rem; margin-top: 5rem; border-top: 1px solid var(--glass-border); }
+        
+        .whatsapp-float { position: fixed; bottom: 30px; left: 30px; background: linear-gradient(135deg, #25d366, #128c7e); color: white; padding: 15px 26px; border-radius: 50px; font-weight: bold; text-decoration: none; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45); z-index: 100; display: flex; align-items: center; gap: 10px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .whatsapp-float:hover { transform: scale(1.08); box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6); }
     </style>
 </head>
 <body>
 
-    <!-- نافذة الرسائل المنبثقة الشيك -->
     <div id="customModal">
         <div class="modal-content">
             <h3 id="modalTitle">منصة الأستاذ رمضان عطية</h3>
@@ -123,7 +265,7 @@
     <header>
         <div>
             <h1>منصة الأستاذ / <span>رمضان عطية</span></h1>
-            <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 4px;">عملاق الجغرافيا السياسية والتاريخ للبكالوريا</p>
+            <p style="font-size: 1rem; color: var(--text-muted); margin-top: 6px;">عملاق الجغرافيا السياسية والتاريخ للبكالوريا</p>
         </div>
         <div class="header-left">
             <button class="theme-toggle-btn" id="themeBtn" onclick="toggleTheme()">☀️ وضع الإضاءة</button>
@@ -133,7 +275,6 @@
         </div>
     </header>
 
-    <!-- شاشة تسجيل الدخول الموحدة (طالب أو أدمن) -->
     <div id="authScreen" class="container">
         <div class="auth-container">
             <h2 id="authTitle">إنشاء حساب جديد</h2>
@@ -169,7 +310,7 @@
                     <label>🔒 كلمة المرور</label>
                     <input type="password" id="regPass" placeholder="••••••••">
                 </div>
-                <button class="form-btn" onclick="registerUser()">إنشاء الحساب والدخول</button>
+                <button class="form-btn" onclick="registerUser()">إنشاء الحساب والدخول 🚀</button>
                 <div class="switch-auth" onclick="toggleAuthMode()">لديك حساب بالفعل؟ أو أنت الأدمن؟ <span>سجل دخولك</span></div>
             </div>
 
@@ -182,16 +323,15 @@
                     <label>🔒 كلمة المرور</label>
                     <input type="password" id="logPass" placeholder="••••••••">
                 </div>
-                <button class="form-btn" onclick="loginUser()">دخول للمنصة</button>
+                <button class="form-btn" onclick="loginUser()">دخول للمنصة 🔓</button>
                 <div class="switch-auth" onclick="toggleAuthMode()">ليس لديك حساب؟ <span>أنشئ حساب جديد</span></div>
             </div>
         </div>
     </div>
 
-    <!-- لوحة تحكم الأدمن (الاونر) -->
     <div id="adminPlatform" class="container hidden">
         <div class="admin-dashboard">
-            <h2 style="color: var(--accent); margin-bottom: 1.5rem; text-align: center;">👑 لوحة تحكم الأستاذ رمضان عطية (المدير)</h2>
+            <h2 style="color: var(--accent); margin-bottom: 2rem; text-align: center; text-shadow: 0 2px 10px var(--accent-glow);">👑 لوحة تحكم الأستاذ رمضان عطية (المدير)</h2>
             
             <div class="stats-grid">
                 <div class="stat-card">
@@ -208,7 +348,7 @@
                 </div>
             </div>
 
-            <h3 style="margin-bottom: 0.8rem; color: var(--text-main);">📋 سجل الطلاب المحدث:</h3>
+            <h3 style="margin-bottom: 1rem; color: var(--text-main);">📋 سجل الطلاب المحدث:</h3>
             <div class="table-container">
                 <table>
                     <thead>
@@ -223,18 +363,15 @@
                         </tr>
                     </thead>
                     <tbody id="studentsTableBody">
-                        <!-- يتم ملؤها أوتوماتيك -->
                     </tbody>
                 </table>
             </div>
-            <button onclick="logout()" class="form-btn" style="background: #ef4444; margin-top: 2rem;">تسجيل خروج الأدمن</button>
+            <button onclick="logout()" class="form-btn" style="background: linear-gradient(135deg, #ef4444, #dc2626); margin-top: 2.5rem; max-width: 250px; margin-left: auto; margin-right: auto;">تسجيل خروج الأدمن</button>
         </div>
     </div>
 
-    <!-- المنصة الرئيسية للطالب -->
     <div id="mainPlatform" class="container hidden">
         <div class="grid">
-            <!-- كارت الجغرافيا السياسية -->
             <div class="card">
                 <div class="card-header" style="color: var(--accent);">🌍 الجغرافيا السياسية</div>
                 <div class="card-body">
@@ -252,7 +389,7 @@
                         <h4>💳 شحن وتفعيل حصص الجغرافيا</h4>
                         <div class="payment-methods">
                             <span class="pay-badge">🔴 فودافون كاش: <strong>01065067876</strong></span>
-                            <span class="pay-badge">🟣 انستا باي (InstaPay): <strong>ramadan.atia@instapay</strong></span>
+                            <span class="pay-badge">🟣 انستا باي: <strong>ramadan.atia@instapay</strong></span>
                         </div>
                         <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.8rem;">حول قيمة الحصة ثم اكتب رقم عملية التحويل هنا:</p>
                         <input type="text" id="geoPayRef" class="pay-input" placeholder="رقم عملية التحويل أو ملاحظة">
@@ -261,7 +398,6 @@
                 </div>
             </div>
 
-            <!-- كارت التاريخ -->
             <div class="card">
                 <div class="card-header" style="color: #a78bfa;">📜 التاريخ للبكالوريا</div>
                 <div class="card-body">
@@ -279,11 +415,11 @@
                         <h4>💳 شحن وتفعيل حصص التاريخ</h4>
                         <div class="payment-methods">
                             <span class="pay-badge">🔴 فودافون كاش: <strong>01065067876</strong></span>
-                            <span class="pay-badge">🟣 انستا باي (InstaPay): <strong>ramadan.atia@instapay</strong></span>
+                            <span class="pay-badge">🟣 انستا باي: <strong>ramadan.atia@instapay</strong></span>
                         </div>
                         <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.8rem;">حول قيمة الحصة ثم اكتب رقم عملية التحويل هنا:</p>
                         <input type="text" id="histPayRef" class="pay-input" placeholder="رقم عملية التحويل أو ملاحظة">
-                        <button onclick="sendPayment('hist')" class="btn" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);">إرسال إيصال الدفع واتساب 💬</button>
+                        <button onclick="sendPayment('hist')" class="btn" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9); box-shadow: 0 6px 20px rgba(139, 92, 246, 0.35);">إرسال إيصال الدفع واتساب 💬</button>
                     </div>
                 </div>
             </div>
@@ -301,7 +437,6 @@
         const ADMIN_USER = "admin";
         const ADMIN_PASS = "ramadan2026";
 
-        // دالة عرض رسالة منبثقة شيك بدلاً من alert
         function showModal(title, message) {
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalMessage').innerText = message;
@@ -312,7 +447,6 @@
             document.getElementById('customModal').classList.remove('show');
         }
 
-        // تشغيل نظام الألوان المحفوظ مسبقاً
         if (localStorage.getItem('theme') === 'light') {
             document.body.classList.add('light-mode');
             document.getElementById('themeBtn').innerHTML = '🌙 الوضع الداكن';
@@ -437,7 +571,7 @@
             const tbody = document.getElementById('studentsTableBody');
             tbody.innerHTML = '';
 
-icon:            if(students.length === 0) {
+            if(students.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-muted);">لا يوجد طلاب مسجلين حتى الآن.</td></tr>`;
                 return;
             }
