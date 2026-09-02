@@ -4,39 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة الأستاذ رمضان عطية | عملاق الجغرافيا والتاريخ</title>
-    <!-- استدعاء خطوط عصرية شبيهة بستايل الآيفون (Dubai و Tajawal) -->
+    <!-- استدعاء خطوط الآيفون و Tajawal للعناوين -->
     <link href="https://fonts.googleapis.com/css2?family=Dubai:wght@400;700&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #030712;
-            --card-bg: rgba(17, 24, 39, 0.75);
-            --card-border: rgba(255, 255, 255, 0.12);
+            --bg-main: #020617;
+            --card-bg: rgba(15, 23, 42, 0.8);
+            --card-border: rgba(255, 255, 255, 0.15);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --accent: #f59e0b;
-            --accent-glow: rgba(245, 158, 11, 0.4);
-            --input-bg: rgba(3, 7, 18, 0.6);
-            --shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            --accent-glow: rgba(245, 158, 11, 0.5);
+            --input-bg: rgba(2, 6, 23, 0.7);
+            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
         }
 
         body.light-mode {
             --bg-main: #f1f5f9;
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --card-border: rgba(0, 0, 0, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-border: rgba(0, 0, 0, 0.12);
             --text-main: #0f172a;
             --text-muted: #475569;
-            --input-bg: rgba(241, 245, 249, 0.8);
-            --shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            --input-bg: rgba(241, 245, 249, 0.9);
+            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
         }
 
         body.geo-theme {
-            --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.4);
+            --accent: #0ea5e9;
+            --accent-glow: rgba(14, 165, 233, 0.6);
         }
 
         body.history-theme {
-            --accent: #fbbf24;
-            --accent-glow: rgba(251, 191, 36, 0.4);
+            --accent: #eab308;
+            --accent-glow: rgba(234, 179, 8, 0.6);
         }
 
         * { box-sizing: border-box; }
@@ -44,8 +44,7 @@
         body {
             background-color: var(--bg-main);
             color: var(--text-main);
-            /* خط آيفون/إماراتي ناعم للنصوص العادية */
-            font-family: 'Dubai', -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+            font-family: 'Dubai', -apple-system, BlinkMacSystemFont, sans-serif;
             margin: 0;
             padding: 20px;
             min-height: 100vh;
@@ -53,6 +52,7 @@
             justify-content: center;
             align-items: center;
             transition: background 0.4s ease, color 0.4s ease;
+            background-image: radial-gradient(circle at 50% 0%, var(--accent-glow) 0%, transparent 60%);
         }
 
         .container {
@@ -60,40 +60,67 @@
             max-width: 680px;
         }
 
+        /* جرافيك وتأثيرات 3D فاجرة */
         .glass-3d {
             background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--card-border);
-            border-top: 2px solid var(--accent);
-            border-radius: 24px;
-            padding: 30px;
-            box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            transform: perspective(1000px) rotateX(1deg);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 3px solid var(--accent);
+            border-radius: 28px;
+            padding: 35px;
+            box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transform: perspective(1200px) rotateX(1.5deg);
+            transition: transform 0.4s cubic-bezier(0.1, 0.8, 0.3, 1), box-shadow 0.4s ease;
             margin-bottom: 25px;
         }
         .glass-3d:hover {
-            transform: perspective(1000px) rotateX(0deg) translateY(-3px);
-            box-shadow: 0 30px 60px var(--accent-glow);
+            transform: perspective(1200px) rotateX(0deg) translateY(-5px);
+            box-shadow: 0 35px 70px var(--accent-glow);
         }
 
-        /* خط مخصص فخم للعناوين الرئيسية (ستايل الآيفون البارز) */
         h1, h2, h3 {
             font-family: 'Tajawal', sans-serif;
             color: var(--accent);
             text-align: center;
             margin-top: 0;
-            text-shadow: 0 2px 10px var(--accent-glow);
+            text-shadow: 0 2px 15px var(--accent-glow);
             font-weight: 900;
-            letter-spacing: -0.5px;
         }
 
         p { color: var(--text-muted); text-align: center; font-size: 15px; }
 
-        .input-group { margin-bottom: 15px; }
+        .tabs-switcher {
+            display: flex;
+            background: var(--input-bg);
+            border-radius: 14px;
+            padding: 5px;
+            margin-bottom: 25px;
+            border: 1px solid var(--card-border);
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 12px;
+            color: var(--text-muted);
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active {
+            background: var(--accent);
+            color: #020617;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .input-group { margin-bottom: 18px; }
         
-        /* تظبيط خط عناوين الحقول (تكون واضحة وجريئة) */
         label { 
             display: block; 
             font-size: 13px; 
@@ -106,7 +133,7 @@
         
         input, select {
             width: 100%;
-            padding: 14px;
+            padding: 15px;
             background: var(--input-bg);
             border: 1px solid var(--card-border);
             color: var(--text-main);
@@ -118,24 +145,24 @@
         }
         input:focus, select:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 12px var(--accent-glow);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
         .btn {
             background: linear-gradient(135deg, var(--accent), #d97706);
-            color: #000;
+            color: #020617;
             border: none;
-            padding: 14px;
+            padding: 15px;
             width: 100%;
             border-radius: 14px;
             font-weight: 700;
             cursor: pointer;
             font-size: 16px;
             font-family: 'Tajawal', sans-serif;
-            box-shadow: 0 5px 20px var(--accent-glow);
+            box-shadow: 0 8px 25px var(--accent-glow);
             transition: 0.3s;
         }
-        .btn:hover { opacity: 0.9; transform: scale(1.02); }
+        .btn:hover { opacity: 0.95; transform: scale(1.02); }
 
         .top-controls {
             display: flex;
@@ -145,7 +172,7 @@
             font-weight: 600;
         }
 
-        .theme-toggle-btn {
+        .theme-toggle-btn, .admin-link {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             color: var(--text-main);
@@ -156,6 +183,7 @@
             font-family: 'Tajawal', sans-serif;
             font-weight: 700;
             backdrop-filter: blur(10px);
+            text-decoration: none;
         }
 
         .lesson-card {
@@ -177,7 +205,7 @@
 
         .badge {
             background: var(--accent);
-            color: #000;
+            color: #020617;
             padding: 6px 12px;
             border-radius: 8px;
             font-size: 12px;
@@ -194,53 +222,67 @@
         
         <div class="top-controls">
             <span style="font-size: 13px; color: var(--text-muted);">منصة الأستاذ / رمضان عطية</span>
-            <button class="theme-toggle-btn" onclick="toggleMode()">💡 تبديل الوضع (داكن / فاتح)</button>
+            <div>
+                <button class="theme-toggle-btn" onclick="toggleMode()">💡 الثيم</button>
+                <button class="admin-link" onclick="openAdminModal()">⚙️ الآدمن</button>
+            </div>
         </div>
 
-        <!-- شاشة تسجيل الدخول المتكاملة -->
+        <!-- شاشة تسجيل الدخول / التسجيل الجديدة -->
         <div id="authSection" class="glass-3d">
-            <h2>تسجيل دخول الطالب 🎓</h2>
-            <p>أدخل جميع بياناتك الشخصية بدقة للوصول إلى المنصة</p>
+            <h2>بوابة الطلاب الذكية 🎓</h2>
+            <p>اختر طريقة الدخول للمتابعة مع عملاق المادتين</p>
+
+            <!-- تابات التبديل بين إنشاء حساب أو تسجيل دخول مباشر -->
+            <div class="tabs-switcher">
+                <button class="tab-btn active" id="tabRegister" onclick="switchTab('register')">طالب جديد 📝</button>
+                <button class="tab-btn" id="tabLogin" onclick="switchTab('login')">لدي حساب سابق 🚀</button>
+            </div>
             
-            <div class="input-group" style="margin-top: 20px;">
-                <label>الاسم الكامل للطالب</label>
-                <input type="text" id="userName" placeholder="مثال: عمار رمضان عطية">
+            <!-- فورم تسجيل طالب جديد -->
+            <div id="registerForm">
+                <div class="input-group">
+                    <label>الاسم الكامل للطالب</label>
+                    <input type="text" id="regName" placeholder="مثال: عمار رمضان عطية">
+                </div>
+                <div class="input-group">
+                    <label>رقم هاتف الطالب</label>
+                    <input type="tel" id="regPhone" placeholder="010xxxxxxxx">
+                </div>
+                <div class="input-group">
+                    <label>اسم ولي الأمر</label>
+                    <input type="text" id="regParentName" placeholder="اسم ولي الأمر رباعي">
+                </div>
+                <div class="input-group">
+                    <label>رقم هاتف ولي الأمر</label>
+                    <input type="tel" id="regParentPhone" placeholder="011xxxxxxxx">
+                </div>
+                <div class="input-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="regEmail" placeholder="example@gmail.com">
+                </div>
+                <div class="input-group">
+                    <label>الرقم القومي (14 رقم)</label>
+                    <input type="text" id="regNationalId" maxlength="14" placeholder="الرقم القومي الخاص بك">
+                </div>
+                <div class="input-group">
+                    <label>اختر المادة الدراسية</label>
+                    <select id="regSubject">
+                        <option value="geo">الصف الثالث الثانوي - الجغرافيا السياسية 🌍</option>
+                        <option value="history">الصف الثالث الثانوي - التاريخ والحضارات 📜</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="registerStudent()">إنشاء الحساب ودخول المنصة ✨</button>
             </div>
 
-            <div class="input-group">
-                <label>رقم هاتف الطالب</label>
-                <input type="tel" id="userPhone" placeholder="010xxxxxxxx">
+            <!-- فورم الدخول السريع لمن لديه حساب -->
+            <div id="loginForm" class="hidden">
+                <div class="input-group" style="margin-top: 30px;">
+                    <label>رقم هاتف الطالب المسجل مسبقاً</label>
+                    <input type="tel" id="loginPhone" placeholder="أدخل رقم هاتفك هنا...">
+                </div>
+                <button class="btn" style="margin-top: 20px;" onclick="loginStudent()">تسجيل الدخول السريع 🔓</button>
             </div>
-
-            <div class="input-group">
-                <label>اسم ولي الأمر</label>
-                <input type="text" id="parentName" placeholder="اسم ولي الأمر رباعي">
-            </div>
-
-            <div class="input-group">
-                <label>رقم هاتف ولي الأمر</label>
-                <input type="tel" id="parentPhone" placeholder="011xxxxxxxx">
-            </div>
-
-            <div class="input-group">
-                <label>البريد الإلكتروني</label>
-                <input type="email" id="userEmail" placeholder="example@gmail.com">
-            </div>
-
-            <div class="input-group">
-                <label>الرقم القومي (14 رقم)</label>
-                <input type="text" id="userNationalId" maxlength="14" placeholder="أدخل الرقم القومي الخاص بك">
-            </div>
-
-            <div class="input-group">
-                <label>اختر المادة الدراسية</label>
-                <select id="userSubject">
-                    <option value="geo">الصف الثالث الثانوي - الجغرافيا السياسية 🌍</option>
-                    <option value="history">الصف الثالث الثانوي - التاريخ والحضارات 📜</option>
-                </select>
-            </div>
-
-            <button class="btn" onclick="login()">دخول المنصة وتفعيل الحساب 🚀</button>
         </div>
 
         <!-- واجهة المنصة الرئيسية -->
@@ -253,7 +295,7 @@
                 
                 <div style="background: var(--input-bg); padding: 12px; border-radius: 12px; margin-top: 15px; display: flex; justify-content: space-between; align-items: center; font-size: 14px;">
                     <div>الطالب: <strong id="displayName" style="color:var(--accent);"></strong></div>
-                    <button onclick="logout()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-weight:bold; font-family:'Tajawal';">تسجيل خروج 🚪</button>
+                    <button onclick="logout()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-weight:bold; font-family:'Tajawal';">خروج 🚪</button>
                 </div>
             </div>
 
@@ -266,7 +308,7 @@
             <!-- قسم الشحن وتفعيل الكود -->
             <div class="glass-3d">
                 <h3 style="color: var(--accent); margin-top: 0; text-align: right;">💳 شحن وتفعيل الحصص</h3>
-                <p style="text-align: right;">أدخل كود الكارت المقدم من سنتر الأستاذ لتفعيل محتوى الحصص والامتحانات:</p>
+                <p style="text-align: right;">أدخل كود الكارت المقدم من سنتر الأستاذ لتفعيل محتوى الحصص:</p>
                 <input type="text" id="voucherCode" placeholder="أدخل كود الكارت هنا (مثال: RM-XXXX)..." style="margin-bottom: 12px;">
                 <button class="btn" onclick="redeemCode()">تفعيل كود الكارت الآن</button>
             </div>
@@ -275,19 +317,51 @@
 
     </div>
 
+    <!-- نافذة لوحة تحكم الأدمن البسيطة -->
+    <div id="adminModal" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); display:flex; justify-content:center; align-items:center; z-index:1000; backdrop-filter:blur(10px);">
+        <div class="glass-3d" style="width: 90%; max-width: 450px;">
+            <h3>لوحة تحكم الأستاذ ⚙️</h3>
+            <p>أدخل كلمة مرور الأدمن للوصول للإحصائيات</p>
+            <div class="input-group">
+                <input type="password" id="adminPass" placeholder="كلمة المرور (admin123)">
+            </div>
+            <button class="btn" onclick="verifyAdmin()">دخول لوحة التحكم 🔐</button>
+            <button onclick="closeAdminModal()" style="background:none; border:none; color:#ef4444; width:100%; margin-top:15px; cursor:pointer; font-weight:bold; font-family:'Tajawal';">إلغاء ❌</button>
+        </div>
+    </div>
+
     <script>
         function toggleMode() {
             document.body.classList.toggle('light-mode');
         }
 
-        function login() {
-            const name = document.getElementById('userName').value.trim();
-            const phone = document.getElementById('userPhone').value.trim();
-            const parentName = document.getElementById('parentName').value.trim();
-            const parentPhone = document.getElementById('parentPhone').value.trim();
-            const email = document.getElementById('userEmail').value.trim();
-            const nationalId = document.getElementById('userNationalId').value.trim();
-            const subject = document.getElementById('userSubject').value;
+        function switchTab(mode) {
+            const regForm = document.getElementById('registerForm');
+            const logForm = document.getElementById('loginForm');
+            const tabReg = document.getElementById('tabRegister');
+            const tabLog = document.getElementById('tabLogin');
+
+            if(mode === 'register') {
+                regForm.classList.remove('hidden');
+                logForm.classList.add('hidden');
+                tabReg.classList.add('active');
+                tabLog.classList.remove('active');
+            } else {
+                regForm.classList.add('hidden');
+                logForm.classList.remove('hidden');
+                tabLog.classList.add('active');
+                tabReg.classList.remove('active');
+            }
+        }
+
+        function registerStudent() {
+            const name = document.getElementById('regName').value.trim();
+            const phone = document.getElementById('regPhone').value.trim();
+            const parentName = document.getElementById('regParentName').value.trim();
+            const parentPhone = document.getElementById('regParentPhone').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const nationalId = document.getElementById('regNationalId').value.trim();
+            const subject = document.getElementById('regSubject').value;
 
             if(!name || !phone || !parentName || !parentPhone || !email || !nationalId) {
                 alert('يا بطل، لازم تملأ كل حقول البيانات بدون استثناء!');
@@ -299,25 +373,38 @@
                 return;
             }
 
-            localStorage.setItem('rt_name', name);
-            localStorage.setItem('rt_phone', phone);
-            localStorage.setItem('rt_pname', parentName);
-            localStorage.setItem('rt_pphone', parentPhone);
-            localStorage.setItem('rt_email', email);
-            localStorage.setItem('rt_nid', nationalId);
-            localStorage.setItem('rt_subject', subject);
-            renderPlatform();
+            // حفظ بيانات الطالب في LocalStorage عشان يقدر يدخل بيها بعد كده بسهولة
+            const studentData = { name, phone, parentName, parentPhone, email, nationalId, subject };
+            localStorage.setItem('rt_student', JSON.stringify(studentData));
+            
+            renderPlatform(studentData);
         }
 
-        function renderPlatform() {
-            const name = localStorage.getItem('rt_name');
-            const subject = localStorage.getItem('rt_subject');
+        function loginStudent() {
+            const phone = document.getElementById('loginPhone').value.trim();
+            if(!phone) {
+                alert('من فضلك ادخل رقم الهاتف المسجل به سابقاً!');
+                return;
+            }
 
-            if(!name) return;
+            const savedStudent = localStorage.getItem('rt_student');
+            if(!savedStudent) {
+                alert('لا يوجد أي حساب مسجل بهذا الجهاز، برجاء إنشاء حساب جديد!');
+                return;
+            }
 
+            const studentData = JSON.parse(savedStudent);
+            if(studentData.phone === phone) {
+                renderPlatform(studentData);
+            } else {
+                alert('رقم الهاتف غير صحيح أو غير مسجل لدينا!');
+            }
+        }
+
+        function renderPlatform(data) {
             document.getElementById('authSection').classList.add('hidden');
             document.getElementById('mainPlatform').classList.remove('hidden');
-            document.getElementById('displayName').innerText = name;
+            document.getElementById('displayName').innerText = data.name;
 
             const body = document.getElementById('pageBody');
             const title = document.getElementById('platformTitle');
@@ -325,14 +412,14 @@
             const sectionTitle = document.getElementById('sectionTitle');
             const lessonsContainer = document.getElementById('dynamicLessons');
 
-            if(subject === 'geo') {
+            if(data.subject === 'geo') {
                 body.className = body.classList.contains('light-mode') ? 'light-mode geo-theme' : 'geo-theme';
                 icon.innerHTML = '🌍';
                 title.innerText = 'منصة الجغرافيا السياسية';
                 sectionTitle.innerText = 'محتوى منهج الجغرافيا السياسية';
                 lessonsContainer.innerHTML = `
                     <div class="lesson-card"><span>الدرس التمهيدي: المدخل لدراسة الجغرافيا السياسية</span><span class="badge">فيديو + ملزمة</span></div>
-                    <div class="lesson-card"><span>الوحدة الأولى: الدولة في الجغرافيا السياسية</span><span class="badge" style="background:#38bdf8; color:#000;">متاح للشحن</span></div>
+                    <div class="lesson-card"><span>الوحدة الأولى: الدولة في الجغرافيا السياسية</span><span class="badge" style="background:#0ea5e9; color:#fff;">متاح للشحن</span></div>
                     <div class="lesson-card"><span>الوحدة الثانية: المشكلات السياسية</span><span class="badge" style="background:#64748b; color:#fff;">قريباً</span></div>
                 `;
             } else {
@@ -342,7 +429,7 @@
                 sectionTitle.innerText = 'محتوى منهج التاريخ للثانوية العامة';
                 lessonsContainer.innerHTML = `
                     <div class="lesson-card"><span>الحملة الفرنسية على مصر وبلاد الشام</span><span class="badge">فيديو + ملزمة</span></div>
-                    <div class="lesson-card"><span>بناء الدولة الحديثة في مصر (عصر محمد علي)</span><span class="badge" style="background:#fbbf24; color:#000;">متاح للشحن</span></div>
+                    <div class="lesson-card"><span>بناء الدولة الحديثة في مصر (عصر محمد علي)</span><span class="badge" style="background:#eab308; color:#020617;">متاح للشحن</span></div>
                     <div class="lesson-card"><span>التوسع الاستعماري في البلاد العربية</span><span class="badge" style="background:#64748b; color:#fff;">قريباً</span></div>
                 `;
             }
@@ -354,18 +441,44 @@
                 alert('من فضلك اكتب كود الشحن أولاً!');
                 return;
             }
-            alert('تم التحقق من الكود بنجاح! تم فتح المحتوى الحصري لحصتك.');
+            alert('تم التحقق من الكود بنجاح! تم فتح محتوى الحصة الحصري.');
             document.getElementById('voucherCode').value = '';
         }
 
         function logout() {
-            localStorage.clear();
             location.reload();
         }
 
+        function openAdminModal() {
+            document.getElementById('adminModal').classList.remove('hidden');
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminModal').classList.add('hidden');
+        }
+
+        function verifyAdmin() {
+            const pass = document.getElementById('adminPass').value;
+            if(pass === 'admin123') {
+                alert('أهلاً بك يا أستاذ رمضان! تم تأكيد صلاحيات الأدمن بنجاح.');
+                closeAdminModal();
+                const saved = localStorage.getItem('rt_student');
+                if(saved) {
+                    const st = JSON.parse(saved);
+                    alert(`آخر طالب مسجل:\nالاسم: ${st.name}\nالهاتف: ${st.phone}\nولي الأمر: ${st.parentName} (${st.parentPhone})`);
+                } else {
+                    alert('لا توجد تسجيلات طلاب على هذا الجهاز حتى الآن.');
+                }
+            } else {
+                alert('كلمة مرور الأدمن غير صحيحة!');
+            }
+        }
+
         window.onload = function() {
-            if(localStorage.getItem('rt_name')) {
-                renderPlatform();
+            const saved = localStorage.getItem('rt_student');
+            if(saved) {
+                // لو الطالب مسجل قبل كده، بنعرض عليه الدخول السريع مباشرة
+                switchTab('login');
             }
         }
     </script>
