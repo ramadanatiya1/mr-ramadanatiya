@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الأستاذ رمضان عطية | عملاق التاريخ والجغرافيا</title>
+    <title>منصة الأستاذ رمضان عطية | لوحة التحكم والسيادة</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-deep: #030712;
-            --card-bg: rgba(17, 24, 39, 0.75);
+            --card-bg: rgba(17, 24, 39, 0.85);
             --card-border: rgba(255, 255, 255, 0.1);
             --text-main: #f9fafb;
             --text-muted: #9ca3af;
             --accent: #f59e0b;
-            --accent-glow: rgba(245, 158, 11, 0.35);
-            --input-bg: rgba(3, 7, 18, 0.85);
-            --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+            --accent-glow: rgba(245, 158, 11, 0.3);
+            --input-bg: rgba(3, 7, 18, 0.9);
+            --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8);
         }
 
         body.light-mode {
             --bg-deep: #f8fafc;
-            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-bg: rgba(255, 255, 255, 0.9);
             --card-border: rgba(0, 0, 0, 0.08);
             --text-main: #0f172a;
             --text-muted: #64748b;
@@ -44,27 +44,19 @@
             justify-content: center;
             align-items: center;
             transition: 0.4s ease;
-            background-image: 
-                radial-gradient(circle at 10% 20%, var(--accent-glow) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(14, 165, 233, 0.15) 0%, transparent 40%);
         }
 
-        .container { width: 100%; max-width: 520px; }
+        .container { width: 100%; max-width: 600px; }
 
         .glass-card {
             background: var(--card-bg);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--card-border);
             border-top: 3px solid var(--accent);
-            border-radius: 24px;
-            padding: 30px;
+            border-radius: 20px;
+            padding: 25px;
             box-shadow: var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
             margin-bottom: 20px;
-        }
-        .glass-card:hover {
-            box-shadow: 0 25px 50px var(--accent-glow);
         }
 
         h1, h2, h3 {
@@ -75,78 +67,45 @@
             font-weight: 900;
         }
 
-        p { color: var(--text-muted); text-align: center; font-size: 14px; }
+        p { color: var(--text-muted); text-align: center; font-size: 13px; }
 
         .tabs {
-            display: flex;
-            background: var(--input-bg);
-            border-radius: 12px;
-            padding: 4px;
-            margin-bottom: 20px;
+            display: flex; background: var(--input-bg); border-radius: 10px; padding: 4px; margin-bottom: 15px;
             border: 1px solid var(--card-border);
         }
-
         .tab {
-            flex: 1;
-            background: transparent;
-            border: none;
-            padding: 10px;
-            color: var(--text-muted);
-            font-family: 'Tajawal', sans-serif;
-            font-weight: 700;
-            font-size: 13px;
-            cursor: pointer;
-            border-radius: 9px;
-            transition: 0.3s;
+            flex: 1; background: transparent; border: none; padding: 10px; color: var(--text-muted);
+            font-family: 'Tajawal', sans-serif; font-weight: 700; font-size: 13px; cursor: pointer; border-radius: 8px; transition: 0.3s;
         }
-        .tab.active {
-            background: var(--accent);
-            color: #030712;
-            box-shadow: 0 4px 12px var(--accent-glow);
-        }
+        .tab.active { background: var(--accent); color: #030712; box-shadow: 0 4px 12px var(--accent-glow); }
 
-        .group { margin-bottom: 14px; }
-        label { 
-            display: block; font-size: 12px; color: var(--accent); 
-            margin-bottom: 5px; font-family: 'Tajawal', sans-serif; font-weight: 700; text-align: right; 
-        }
+        .group { margin-bottom: 12px; }
+        label { display: block; font-size: 11px; color: var(--accent); margin-bottom: 4px; font-family: 'Tajawal', sans-serif; font-weight: 700; text-align: right; }
         input, select {
-            width: 100%; padding: 12px 15px; background: var(--input-bg);
-            border: 1px solid var(--card-border); color: var(--text-main);
-            border-radius: 12px; font-size: 14px; font-family: 'Cairo', sans-serif; outline: none; transition: 0.3s;
+            width: 100%; padding: 11px 14px; background: var(--input-bg); border: 1px solid var(--card-border);
+            color: var(--text-main); border-radius: 10px; font-size: 13px; font-family: 'Cairo', sans-serif; outline: none; transition: 0.3s;
         }
-        input:focus, select:focus {
-            border-color: var(--accent); box-shadow: 0 0 10px var(--accent-glow);
-        }
+        input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 8px var(--accent-glow); }
 
         .main-btn {
-            background: linear-gradient(135deg, var(--accent), #d97706);
-            color: #030712; border: none; padding: 13px; width: 100%;
-            border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 15px;
-            font-family: 'Tajawal', sans-serif; box-shadow: 0 5px 20px var(--accent-glow); transition: 0.3s;
+            background: linear-gradient(135deg, var(--accent), #d97706); color: #030712; border: none; padding: 12px; width: 100%;
+            border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 14px; font-family: 'Tajawal', sans-serif; transition: 0.3s;
         }
-        .main-btn:hover { opacity: 0.92; transform: translateY(-2px); }
+        .main-btn:hover { opacity: 0.9; }
 
-        .top-bar {
-            display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;
-        }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         .action-pill {
             background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main);
-            padding: 6px 14px; border-radius: 20px; cursor: pointer; font-size: 12px;
-            font-family: 'Tajawal', sans-serif; font-weight: 700; backdrop-filter: blur(10px);
+            padding: 5px 12px; border-radius: 15px; cursor: pointer; font-size: 11px; font-family: 'Tajawal', sans-serif; font-weight: 700;
         }
 
-        .lesson-row {
-            background: var(--input-bg); border: 1px solid var(--card-border); padding: 14px;
-            border-radius: 12px; margin-top: 10px; display: flex; justify-content: space-between;
-            align-items: center; font-size: 14px; font-weight: 600;
-        }
-        .badge {
-            background: var(--accent); color: #030712; padding: 4px 10px;
-            border-radius: 6px; font-size: 11px; font-family: 'Tajawal', sans-serif; font-weight: 700;
-        }
+        .table-container { width: 100%; overflow-x: auto; margin-top: 15px; }
+        table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: right; }
+        th, td { padding: 10px; border-bottom: 1px solid var(--card-border); }
+        th { color: var(--accent); font-family: 'Tajawal'; }
+        
         .hidden { display: none !important; }
-        .sub-link { color: var(--accent); text-align: center; font-size: 12px; cursor: pointer; margin-top: 10px; font-family: 'Tajawal'; display: block; font-weight: 600; }
+        .sub-link { color: var(--accent); text-align: center; font-size: 11px; cursor: pointer; margin-top: 8px; font-family: 'Tajawal'; display: block; font-weight: 600; }
     </style>
 </head>
 <body id="pageBody" class="history-theme">
@@ -154,24 +113,23 @@
     <div class="container">
         
         <div class="top-bar">
-            <span style="font-size: 12px; color: var(--text-muted); font-weight: 600;">منصة الأستاذ / رمضان عطية</span>
+            <span style="font-size: 11px; color: var(--text-muted); font-weight: 600;">منصة الأستاذ / رمضان عطية</span>
             <div>
                 <button class="action-pill" onclick="toggleTheme()">💡 الثيم</button>
-                <button class="action-pill" onclick="openAdmin()">⚙️ الآدمن</button>
+                <button class="action-pill" onclick="openAdminModal()">⚙️ لوحة الأدمن</button>
             </div>
         </div>
 
-        <!-- البوابة الرئيسية -->
+        <!-- بوابة الطلاب -->
         <div id="authBox" class="glass-card">
             <h2>بوابة الطلاب الذكية 🎓</h2>
-            <p>سجل دخولك أو أنشئ حسابك الجديد بكل سهولة</p>
+            <p>سجل دخولك أو أنشئ حسابك الجديد للمتابعة</p>
 
             <div class="tabs">
                 <button class="tab active" id="tabL" onclick="switchTab('login')">تسجيل الدخول 🔓</button>
                 <button class="tab" id="tabR" onclick="switchTab('register')">طالب جديد 📝</button>
             </div>
             
-            <!-- فورم تسجيل الدخول -->
             <div id="loginForm">
                 <div class="group">
                     <label>رقم هاتف الطالب</label>
@@ -182,10 +140,8 @@
                     <input type="password" id="lPass" placeholder="أدخل كلمة السر">
                 </div>
                 <button class="main-btn" onclick="login()">دخول المنصة 🚀</button>
-                <span class="sub-link" onclick="forgotPassModal()">نسيت كلمة السر؟ 🔑</span>
             </div>
 
-            <!-- فورم إنشاء حساب -->
             <div id="regForm" class="hidden">
                 <div class="group">
                     <label>الاسم الكامل للطالب</label>
@@ -208,10 +164,6 @@
                     <input type="email" id="rEmail" placeholder="example@gmail.com">
                 </div>
                 <div class="group">
-                    <label>الرقم القومي (14 رقم)</label>
-                    <input type="text" id="rNatId" maxlength="14" placeholder="الرقم القومي">
-                </div>
-                <div class="group">
                     <label>كلمة السر</label>
                     <input type="password" id="rPass" placeholder="اختر كلمة سر قوية">
                 </div>
@@ -224,68 +176,56 @@
                 </div>
                 <button class="main-btn" onclick="register()">إنشاء الحساب ✨</button>
             </div>
-
-            <!-- استعادة كلمة السر -->
-            <div id="forgotBox" class="hidden">
-                <p style="color:var(--accent); margin-bottom:10px;">استعادة كلمة السر الذكية ✉️</p>
-                <div class="group">
-                    <label>البريد الإلكتروني المسجل</label>
-                    <input type="email" id="fEmail" placeholder="example@gmail.com">
-                </div>
-                <button class="main-btn" onclick="sendOtp()">إرسال رمز التحقق 📤</button>
-                
-                <div id="otpSection" class="hidden" style="margin-top:15px;">
-                    <div class="group">
-                        <label>رمز التحقق المؤقت (OTP)</label>
-                        <input type="text" id="otpInput" placeholder="أدخل الكود الظاهر أسفل الشاشة">
-                    </div>
-                    <div class="group">
-                        <label>كلمة السر الجديدة</label>
-                        <input type="text" id="newPassInput" placeholder="أدخل الباسورد الجديد">
-                    </div>
-                    <button class="main-btn" onclick="confirmReset()">حفظ الباسورد الجديد 🔒</button>
-                </div>
-                <span class="sub-link" onclick="switchTab('login')" style="margin-top:12px;">العودة للدخول 🔙</span>
-            </div>
         </div>
 
-        <!-- لوحة المنصة الداخلية -->
+        <!-- منصة الطالب -->
         <div id="platformBox" class="hidden">
             <div class="glass-card" style="text-align: center;">
-                <span id="pIcon" style="font-size: 38px;">📜</span>
-                <h1 id="pTitle" style="font-size: 22px;">منصة التاريخ</h1>
-                <p>عملاق المواد الأدبية للثانوية العامة والبكالوريا</p>
-                
-                <div style="background: var(--input-bg); padding: 10px; border-radius: 10px; margin-top: 12px; display: flex; justify-content: space-between; align-items: center; font-size: 13px;">
+                <h1 id="pTitle" style="font-size: 20px;">منصة المواد الأدبية</h1>
+                <div style="background: var(--input-bg); padding: 8px; border-radius: 8px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
                     <div>الطالب: <strong id="pName" style="color:var(--accent);"></strong></div>
                     <button onclick="location.reload()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-weight:bold; font-family:'Tajawal';">خروج 🚪</button>
                 </div>
             </div>
+        </div>
 
-            <div class="glass-card">
-                <h3 id="secTitle" style="font-size: 16px; text-align: right;">محتوى المنهج</h3>
-                <div id="lessonsList"></div>
+        <!-- لوحة تحكم الأدمن الخاصة بك -->
+        <div id="adminDashboard" class="glass-card hidden">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                <h2 style="margin:0; font-size:18px;">👑 لوحة تحكم الأستاذ رمضان</h2>
+                <button onclick="closeAdminDashboard()" class="action-pill" style="color:#ef4444;">إغلاق ❌</button>
             </div>
-
-            <div class="glass-card">
-                <h3 style="font-size: 16px; text-align: right;">💳 شحن الكروت</h3>
-                <input type="text" id="voucher" placeholder="أدخل كود الكارت هنا..." style="margin-bottom: 10px;">
-                <button class="main-btn" onclick="redeem()">تفعيل الكارت الآن</button>
+            <p style="text-align:right;">قاعدة بيانات الطلاب المسجلين بالمنصة:</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>الاسم</th>
+                            <th>الهاتف</th>
+                            <th>المادة</th>
+                            <th>إجراء</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentsTableBody">
+                        <!-- البيانات هتتسحب هنا أوتوماتيك -->
+                    </tbody>
+                </table>
             </div>
+            <button class="main-btn" style="margin-top:15px; background:#ef4444; color:#fff;" onclick="clearAllData()">حذف كافة بيانات الطلاب 🗑️</button>
         </div>
 
     </div>
 
-    <!-- نافذة الأدمن الآمنة -->
-    <div id="adminModal" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); display:flex; justify-content:center; align-items:center; z-index:1000; backdrop-filter:blur(10px);">
-        <div class="glass-card" style="width: 85%; max-width: 380px;">
-            <h3>لوحة الأدمن ⚙️</h3>
-            <p>أدخل كلمة مرور الأدمن (1234)</p>
+    <!-- نافذة تسجيل دخول الأدمن المخفية -->
+    <div id="adminModal" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); display:flex; justify-content:center; align-items:center; z-index:1000;">
+        <div class="glass-card" style="width: 85%; max-width: 350px;">
+            <h3>دخول الأدمن الخاص 🔐</h3>
+            <p>أدخل كلمة مرور الأدمن السرية</p>
             <div class="group">
-                <input type="password" id="adminKey" placeholder="كلمة المرور">
+                <input type="password" id="adminSecretInput" placeholder="كلمة المرور المشفرة">
             </div>
-            <button class="main-btn" onclick="verifyAdmin()">دخول 🔐</button>
-            <button onclick="closeAdmin()" style="background:none; border:none; color:#ef4444; width:100%; margin-top:12px; cursor:pointer; font-weight:bold; font-family:'Tajawal';">إلغاء ❌</button>
+            <button class="main-btn" onclick="verifyAdminLogin()">دخول للوحة التحكم 🚀</button>
+            <button onclick="closeAdminModal()" style="background:none; border:none; color:#ef4444; width:100%; margin-top:10px; cursor:pointer; font-weight:bold; font-family:'Tajawal';">إلغاء</button>
         </div>
     </div>
 
@@ -295,23 +235,21 @@
         function switchTab(type) {
             document.getElementById('loginForm').classList.add('hidden');
             document.getElementById('regForm').classList.add('hidden');
-            document.getElementById('forgotBox').classList.add('hidden');
             document.getElementById('tabL').classList.remove('active');
             document.getElementById('tabR').classList.remove('active');
 
             if(type === 'login') {
                 document.getElementById('loginForm').classList.remove('hidden');
                 document.getElementById('tabL').classList.add('active');
-            } else if(type === 'register') {
+            } else {
                 document.getElementById('regForm').classList.remove('hidden');
                 document.getElementById('tabR').classList.add('active');
             }
         }
 
-        function forgotPassModal() {
-            document.getElementById('loginForm').classList.add('hidden');
-            document.getElementById('regForm').classList.add('hidden');
-            document.getElementById('forgotBox').classList.remove('hidden');
+        // نظام تخزين وحفظ الطلاب (قاعدة بيانات محلية مطورة، ويمكن ربطها بـ Supabase مستقبلاً)
+        function getStudents() {
+            return JSON.parse(localStorage.getItem('rt_all_students')) || [];
         }
 
         function register() {
@@ -320,67 +258,40 @@
             const parentName = document.getElementById('rPName').value.trim();
             const parentPhone = document.getElementById('rPPhone').value.trim();
             const email = document.getElementById('rEmail').value.trim();
-            const natId = document.getElementById('rNatId').value.trim();
             const pass = document.getElementById('rPass').value.trim();
             const subj = document.getElementById('rSubj').value;
 
-            if(!name || !phone || !pass || !email) {
-                alert('املأ الحقول الأساسية من فضلك!');
+            if(!name || !phone || !pass) {
+                alert('املأ الحقول الإجبارية!');
                 return;
             }
 
-            const student = { name, phone, parentName, parentPhone, email, natId, pass, subj };
-            localStorage.setItem('rt_student', JSON.stringify(student));
+            let students = getStudents();
+            if(students.some(s => s.phone === phone)) {
+                alert('رقم الهاتف مسجل مسبقاً!');
+                return;
+            }
+
+            const newStudent = { name, phone, parentName, parentPhone, email, pass, subj };
+            students.push(newStudent);
+            localStorage.setItem('rt_all_students', JSON.stringify(students));
+            localStorage.setItem('rt_current_student', JSON.stringify(newStudent));
+            
             alert('تم إنشاء الحساب بنجاح!');
-            launchPlatform(student);
+            launchPlatform(newStudent);
         }
 
         function login() {
             const phone = document.getElementById('lPhone').value.trim();
             const pass = document.getElementById('lPass').value.trim();
-            const saved = localStorage.getItem('rt_student');
+            let students = getStudents();
 
-            if(!saved) {
-                alert('لا يوجد حساب مسجل، أنشئ حساباً جديداً!');
-                return;
-            }
-
-            const st = JSON.parse(saved);
-            if(st.phone === phone && st.pass === pass) {
+            const st = students.find(s => s.phone === phone && s.pass === pass);
+            if(st) {
+                localStorage.setItem('rt_current_student', JSON.stringify(st));
                 launchPlatform(st);
             } else {
                 alert('رقم الهاتف أو كلمة السر غير صحيحة!');
-            }
-        }
-
-        let generatedOtp = "";
-        function sendOtp() {
-            const email = document.getElementById('fEmail').value.trim();
-            const saved = localStorage.getItem('rt_student');
-            if(!saved) { alert('لا توجد حسابات مسجلة!'); return; }
-            const st = JSON.parse(saved);
-            
-            if(st.email === email) {
-                generatedOtp = Math.floor(1000 + Math.random() * 9000).toString();
-                alert(`تم إرسال رمز التحقق لإيميلك.\n(رمز الـ OTP التجريبي الخاص بك هو: ${generatedOtp})`);
-                document.getElementById('otpSection').classList.remove('hidden');
-            } else {
-                alert('البريد الإلكتروني غير مسجل لدينا!');
-            }
-        }
-
-        function confirmReset() {
-            const enteredOtp = document.getElementById('otpInput').value.trim();
-            const newPass = document.getElementById('newPassInput').value.trim();
-
-            if(enteredOtp === generatedOtp && newPass) {
-                let st = JSON.parse(localStorage.getItem('rt_student'));
-                st.pass = newPass;
-                localStorage.setItem('rt_student', JSON.stringify(st));
-                alert('تم تحديث كلمة السر بنجاح، سجل دخولك الآن!');
-                switchTab('login');
-            } else {
-                alert('رمز التحقق غير صحيح أو كلمة السر فارغة!');
             }
         }
 
@@ -388,53 +299,59 @@
             document.getElementById('authBox').classList.add('hidden');
             document.getElementById('platformBox').classList.remove('hidden');
             document.getElementById('pName').innerText = st.name;
+        }
 
-            const body = document.getElementById('pageBody');
-            const title = document.getElementById('pTitle');
-            const icon = document.getElementById('pIcon');
-            const list = document.getElementById('lessonsList');
+        function openAdminModal() { document.getElementById('adminModal').classList.remove('hidden'); }
+        function closeAdminModal() { document.getElementById('adminModal').classList.add('hidden'); }
+        function closeAdminDashboard() { document.getElementById('adminDashboard').classList.add('hidden'); document.getElementById('authBox').classList.remove('hidden'); }
 
-            if(st.subj === 'history') {
-                body.className = body.classList.contains('light-mode') ? 'light-mode history-theme' : 'history-theme';
-                icon.innerHTML = '📜';
-                title.innerText = 'منصة التاريخ (البكالوريا)';
-                list.innerHTML = `
-                    <div class="lesson-row"><span>محاضرة الحملة الفرنسية</span><span class="badge">فيديو + ملزمة</span></div>
-                    <div class="lesson-row"><span>محاضرة بناء الدولة الحديثة</span><span class="badge" style="background:#eab308; color:#030712;">متاح للشحن</span></div>
-                `;
+        function verifyAdminLogin() {
+            const key = document.getElementById('adminSecretInput').value.trim();
+            // هنا الباسورد الخاص بك أنت وحدك (مثلاً رمضـان 2026 أو أي باسورد تحبه سري جداً)
+            if(key === 'RamadanAtiya2026#') {
+                closeAdminModal();
+                document.getElementById('authBox').classList.add('hidden');
+                document.getElementById('platformBox').classList.add('hidden');
+                document.getElementById('adminDashboard').classList.remove('hidden');
+                renderAdminTable();
             } else {
-                body.className = body.classList.contains('light-mode') ? 'light-mode geo-theme' : 'geo-theme';
-                icon.innerHTML = '🌍';
-                title.innerText = 'منصة الجغرافيا السياسية';
-                list.innerHTML = `
-                    <div class="lesson-row"><span>الدرس التمهيدي: المدخل</span><span class="badge">فيديو + ملزمة</span></div>
-                    <div class="lesson-row"><span>الوحدة الأولى: الدولة</span><span class="badge" style="background:#0ea5e9; color:#fff;">متاح للشحن</span></div>
-                `;
+                alert('كلمة مرور الأدمن غير صحيحة!');
             }
         }
 
-        function redeem() {
-            alert('تم تفعيل الكود بنجاح!');
-            document.getElementById('voucher').value = '';
+        function renderAdminTable() {
+            let students = getStudents();
+            let tbody = document.getElementById('studentsTableBody');
+            tbody.innerHTML = '';
+
+            if(students.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">لا توجد تسجيلات حتى الآن</td></tr>`;
+                return;
+            }
+
+            students.forEach((st, index) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${st.name}</td>
+                        <td>${st.phone}</td>
+                        <td>${st.subj === 'history' ? 'تاريخ' : 'جغرافيا'}</td>
+                        <td><button onclick="deleteStudent(${index})" style="background:#ef4444; color:#fff; border:none; padding:4px 8px; border-radius:4px; cursor:pointer;">حذف</button></td>
+                    </tr>
+                `;
+            });
         }
 
-        function openAdmin() { document.getElementById('adminModal').classList.remove('hidden'); }
-        function closeAdmin() { document.getElementById('adminModal').classList.add('hidden'); }
+        function deleteStudent(index) {
+            let students = getStudents();
+            students.splice(index, 1);
+            localStorage.setItem('rt_all_students', JSON.stringify(students));
+            renderAdminTable();
+        }
 
-        function verifyAdmin() {
-            const key = document.getElementById('adminKey').value.trim();
-            if(key === '1234') {
-                alert('أهلاً بك يا أستاذ رمضان!');
-                closeAdmin();
-                const saved = localStorage.getItem('rt_student');
-                if(saved) {
-                    const st = JSON.parse(saved);
-                    alert(`آخر طالب: ${st.name} - هاتف: ${st.phone}`);
-                } else {
-                    alert('لا يوجد طلاب مسجلين بعد.');
-                }
-            } else {
-                alert('كلمة المرور خطأ! استخدم 1234');
+        function clearAllData() {
+            if(confirm('هل أنت متأكد من حذف جميع بيانات الطلاب؟')) {
+                localStorage.removeItem('rt_all_students');
+                renderAdminTable();
             }
         }
     </script>
