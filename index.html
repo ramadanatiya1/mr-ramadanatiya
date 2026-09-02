@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة الأستاذ رمضان عطية | عملاق الجغرافيا والتاريخ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- استدعاء خطوط عصرية شبيهة بستايل الآيفون (Dubai و Tajawal) -->
+    <link href="https://fonts.googleapis.com/css2?family=Dubai:wght@400;700&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-main: #030712;
@@ -39,10 +40,12 @@
         }
 
         * { box-sizing: border-box; }
+        
         body {
             background-color: var(--bg-main);
             color: var(--text-main);
-            font-family: 'Cairo', sans-serif;
+            /* خط آيفون/إماراتي ناعم للنصوص العادية */
+            font-family: 'Dubai', -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
             margin: 0;
             padding: 20px;
             min-height: 100vh;
@@ -75,11 +78,31 @@
             box-shadow: 0 30px 60px var(--accent-glow);
         }
 
-        h1, h2 { color: var(--accent); text-align: center; margin-top: 0; text-shadow: 0 2px 10px var(--accent-glow); font-weight: 900; }
-        p { color: var(--text-muted); text-align: center; font-size: 14px; }
+        /* خط مخصص فخم للعناوين الرئيسية (ستايل الآيفون البارز) */
+        h1, h2, h3 {
+            font-family: 'Tajawal', sans-serif;
+            color: var(--accent);
+            text-align: center;
+            margin-top: 0;
+            text-shadow: 0 2px 10px var(--accent-glow);
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+
+        p { color: var(--text-muted); text-align: center; font-size: 15px; }
 
         .input-group { margin-bottom: 15px; }
-        label { display: block; font-size: 13px; color: var(--accent); margin-bottom: 5px; font-weight: 700; text-align: right; }
+        
+        /* تظبيط خط عناوين الحقول (تكون واضحة وجريئة) */
+        label { 
+            display: block; 
+            font-size: 13px; 
+            color: var(--accent); 
+            margin-bottom: 6px; 
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700; 
+            text-align: right; 
+        }
         
         input, select {
             width: 100%;
@@ -87,9 +110,9 @@
             background: var(--input-bg);
             border: 1px solid var(--card-border);
             color: var(--text-main);
-            border-radius: 12px;
-            font-size: 14px;
-            font-family: 'Cairo', sans-serif;
+            border-radius: 14px;
+            font-size: 15px;
+            font-family: 'Dubai', sans-serif;
             outline: none;
             transition: 0.3s;
         }
@@ -104,11 +127,11 @@
             border: none;
             padding: 14px;
             width: 100%;
-            border-radius: 12px;
+            border-radius: 14px;
             font-weight: 700;
             cursor: pointer;
             font-size: 16px;
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Tajawal', sans-serif;
             box-shadow: 0 5px 20px var(--accent-glow);
             transition: 0.3s;
         }
@@ -126,11 +149,11 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             color: var(--text-main);
-            padding: 8px 15px;
+            padding: 8px 16px;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 12px;
-            font-family: 'Cairo', sans-serif;
+            font-size: 13px;
+            font-family: 'Tajawal', sans-serif;
             font-weight: 700;
             backdrop-filter: blur(10px);
         }
@@ -138,7 +161,7 @@
         .lesson-card {
             background: var(--input-bg);
             border: 1px solid var(--card-border);
-            padding: 15px;
+            padding: 16px;
             border-radius: 14px;
             margin-top: 12px;
             display: flex;
@@ -158,6 +181,7 @@
             padding: 6px 12px;
             border-radius: 8px;
             font-size: 12px;
+            font-family: 'Tajawal', sans-serif;
             font-weight: 700;
         }
 
@@ -227,9 +251,9 @@
                 <h1 id="platformTitle">منصة الجغرافيا السياسية</h1>
                 <p>عملاق الجغرافيا السياسية والتاريخ للثانوية العامة والبكالوريا</p>
                 
-                <div style="background: var(--input-bg); padding: 12px; border-radius: 12px; margin-top: 15px; display: flex; justify-content: space-between; align-items: center; font-size: 13px;">
+                <div style="background: var(--input-bg); padding: 12px; border-radius: 12px; margin-top: 15px; display: flex; justify-content: space-between; align-items: center; font-size: 14px;">
                     <div>الطالب: <strong id="displayName" style="color:var(--accent);"></strong></div>
-                    <button onclick="logout()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-weight:bold; font-family:'Cairo';">تسجيل خروج 🚪</button>
+                    <button onclick="logout()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-weight:bold; font-family:'Tajawal';">تسجيل خروج 🚪</button>
                 </div>
             </div>
 
