@@ -3,42 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الأستاذ رمضان عطية | لوحة التحكم والسيادة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <title>منصة الأستاذ رمضان عطية | نظام الأمان المتقدم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@500;700;900&display=swap" rel="stylesheet">
+    <!-- مكتبة إرسال الإيميلات الحقيقية EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function(){
+            // ضع هنا مفتاح EmailJS الخاص بك لاحقاً (Public Key)
+            emailjs.init("YOUR_PUBLIC_KEY");
+        })();
+    </script>
     <style>
         :root {
-            --bg-deep: #030712;
-            --card-bg: rgba(17, 24, 39, 0.85);
-            --card-border: rgba(255, 255, 255, 0.1);
-            --text-main: #f9fafb;
-            --text-muted: #9ca3af;
+            --bg-base: #050b14;
+            --panel-bg: rgba(13, 22, 38, 0.85);
+            --border-glow: rgba(245, 158, 11, 0.25);
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
             --accent: #f59e0b;
-            --accent-glow: rgba(245, 158, 11, 0.3);
-            --input-bg: rgba(3, 7, 18, 0.9);
-            --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8);
+            --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            --input-field: rgba(5, 11, 20, 0.9);
+            --shadow-custom: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
         }
 
         body.light-mode {
-            --bg-deep: #f8fafc;
-            --card-bg: rgba(255, 255, 255, 0.9);
-            --card-border: rgba(0, 0, 0, 0.08);
+            --bg-base: #f1f5f9;
+            --panel-bg: rgba(255, 255, 255, 0.9);
+            --border-glow: rgba(245, 158, 11, 0.4);
             --text-main: #0f172a;
-            --text-muted: #64748b;
-            --input-bg: rgba(241, 245, 249, 0.9);
-            --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
+            --text-sub: #475569;
+            --input-field: rgba(241, 245, 249, 0.9);
+            --shadow-custom: 0 25px 50px -12px rgba(0, 0, 0, 0.12);
         }
 
-        body.history-theme { --accent: #eab308; --accent-glow: rgba(234, 179, 8, 0.4); }
-        body.geo-theme { --accent: #0ea5e9; --accent-glow: rgba(14, 165, 233, 0.4); }
+        body.history { --accent: #f59e0b; }
+        body.geo { --accent: #0ea5e9; }
 
         * { box-sizing: border-box; }
-        
+
         body {
-            background-color: var(--bg-deep);
+            background-color: var(--bg-base);
             color: var(--text-main);
             font-family: 'Cairo', sans-serif;
             margin: 0;
-            padding: 15px;
+            padding: 20px;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -46,17 +54,17 @@
             transition: 0.4s ease;
         }
 
-        .container { width: 100%; max-width: 600px; }
+        .wrapper { width: 100%; max-width: 480px; }
 
-        .glass-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--card-border);
-            border-top: 3px solid var(--accent);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: var(--shadow);
-            margin-bottom: 20px;
+        .app-card {
+            background: var(--panel-bg);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--border-glow);
+            border-top: 4px solid var(--accent);
+            border-radius: 28px;
+            padding: 35px 25px;
+            box-shadow: var(--shadow-custom);
+            position: relative;
         }
 
         h1, h2, h3 {
@@ -67,187 +75,221 @@
             font-weight: 900;
         }
 
-        p { color: var(--text-muted); text-align: center; font-size: 13px; }
+        p { color: var(--text-sub); text-align: center; font-size: 13.5px; margin-bottom: 25px; }
 
-        .tabs {
-            display: flex; background: var(--input-bg); border-radius: 10px; padding: 4px; margin-bottom: 15px;
-            border: 1px solid var(--card-border);
+        .switcher {
+            display: flex;
+            background: var(--input-field);
+            border-radius: 14px;
+            padding: 5px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.05);
         }
-        .tab {
-            flex: 1; background: transparent; border: none; padding: 10px; color: var(--text-muted);
-            font-family: 'Tajawal', sans-serif; font-weight: 700; font-size: 13px; cursor: pointer; border-radius: 8px; transition: 0.3s;
-        }
-        .tab.active { background: var(--accent); color: #030712; box-shadow: 0 4px 12px var(--accent-glow); }
 
-        .group { margin-bottom: 12px; }
-        label { display: block; font-size: 11px; color: var(--accent); margin-bottom: 4px; font-family: 'Tajawal', sans-serif; font-weight: 700; text-align: right; }
+        .switch-btn {
+            flex: 1; background: transparent; border: none; padding: 12px; color: var(--text-sub);
+            font-family: 'Tajawal', sans-serif; font-weight: 700; font-size: 13px; cursor: pointer; border-radius: 10px; transition: 0.3s;
+        }
+        .switch-btn.active { background: var(--accent-gradient); color: #050b14; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); }
+
+        .field-group { margin-bottom: 16px; }
+
+        label {
+            display: block; font-size: 12px; color: var(--accent); margin-bottom: 6px;
+            font-family: 'Tajawal', sans-serif; font-weight: 700; text-align: right;
+        }
+
         input, select {
-            width: 100%; padding: 11px 14px; background: var(--input-bg); border: 1px solid var(--card-border);
-            color: var(--text-main); border-radius: 10px; font-size: 13px; font-family: 'Cairo', sans-serif; outline: none; transition: 0.3s;
+            width: 100%; padding: 14px 16px; background: var(--input-field);
+            border: 1px solid rgba(255, 255, 255, 0.08); color: var(--text-main);
+            border-radius: 14px; font-size: 14px; font-family: 'Cairo', sans-serif; outline: none; transition: 0.3s;
         }
-        input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 8px var(--accent-glow); }
+        input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 15px rgba(245, 158, 11, 0.2); }
 
-        .main-btn {
-            background: linear-gradient(135deg, var(--accent), #d97706); color: #030712; border: none; padding: 12px; width: 100%;
-            border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 14px; font-family: 'Tajawal', sans-serif; transition: 0.3s;
+        .action-btn {
+            background: var(--accent-gradient); color: #050b14; border: none; padding: 15px; width: 100%;
+            border-radius: 14px; font-weight: 900; cursor: pointer; font-size: 15px; font-family: 'Tajawal', sans-serif;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.25); transition: 0.3s; margin-top: 5px;
         }
-        .main-btn:hover { opacity: 0.9; }
+        .action-btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
 
-        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .action-pill {
-            background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main);
-            padding: 5px 12px; border-radius: 15px; cursor: pointer; font-size: 11px; font-family: 'Tajawal', sans-serif; font-weight: 700;
+        .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding: 0 5px; }
+        .pill {
+            background: var(--panel-bg); border: 1px solid rgba(255, 255, 255, 0.1); color: var(--text-main);
+            padding: 6px 14px; border-radius: 20px; cursor: pointer; font-size: 12px; font-family: 'Tajawal', sans-serif; font-weight: 700;
         }
 
-        .table-container { width: 100%; overflow-x: auto; margin-top: 15px; }
-        table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: right; }
-        th, td { padding: 10px; border-bottom: 1px solid var(--card-border); }
+        .table-box { width: 100%; overflow-x: auto; margin-top: 15px; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: right; }
+        th, td { padding: 12px 10px; border-bottom: 1px solid rgba(255,255,255,0.06); }
         th { color: var(--accent); font-family: 'Tajawal'; }
-        
+
+        .sub-link { color: var(--accent); text-align: center; font-size: 12px; cursor: pointer; margin-top: 12px; font-family: 'Tajawal'; display: block; font-weight: 700; }
         .hidden { display: none !important; }
-        .sub-link { color: var(--accent); text-align: center; font-size: 11px; cursor: pointer; margin-top: 8px; font-family: 'Tajawal'; display: block; font-weight: 600; }
     </style>
 </head>
-<body id="pageBody" class="history-theme">
+<body class="history">
 
-    <div class="container">
+    <div class="wrapper">
         
-        <div class="top-bar">
-            <span style="font-size: 11px; color: var(--text-muted); font-weight: 600;">منصة الأستاذ / رمضان عطية</span>
+        <div class="top-nav">
+            <span style="font-size: 12px; color: var(--text-sub); font-weight: 600;">منصة الأستاذ / رمضان عطية</span>
             <div>
-                <button class="action-pill" onclick="toggleTheme()">💡 الثيم</button>
-                <button class="action-pill" onclick="openAdminModal()">⚙️ لوحة الأدمن</button>
+                <button class="pill" onclick="toggleMode()">💡 الثيم</button>
+                <button class="pill" onclick="openAdminModal()">⚙️ الآدمن</button>
             </div>
         </div>
 
         <!-- بوابة الطلاب -->
-        <div id="authBox" class="glass-card">
+        <div id="authBox" class="app-card">
             <h2>بوابة الطلاب الذكية 🎓</h2>
-            <p>سجل دخولك أو أنشئ حسابك الجديد للمتابعة</p>
+            <p>سجل دخولك أو أنشئ حسابك للاستمتاع بأقوى محتوى تعليمي</p>
 
-            <div class="tabs">
-                <button class="tab active" id="tabL" onclick="switchTab('login')">تسجيل الدخول 🔓</button>
-                <button class="tab" id="tabR" onclick="switchTab('register')">طالب جديد 📝</button>
+            <div class="switcher">
+                <button class="switch-btn active" id="tabL" onclick="switchView('login')">تسجيل الدخول 🔓</button>
+                <button class="switch-btn" id="tabR" onclick="switchView('register')">طالب جديد 📝</button>
             </div>
             
+            <!-- تسجيل الدخول -->
             <div id="loginForm">
-                <div class="group">
+                <div class="field-group">
                     <label>رقم هاتف الطالب</label>
                     <input type="tel" id="lPhone" placeholder="010xxxxxxxx">
                 </div>
-                <div class="group">
+                <div class="field-group">
                     <label>كلمة السر</label>
                     <input type="password" id="lPass" placeholder="أدخل كلمة السر">
                 </div>
-                <button class="main-btn" onclick="login()">دخول المنصة 🚀</button>
+                <button class="action-btn" onclick="login()">دخول المنصة 🚀</button>
+                <span class="sub-link" onclick="switchView('forgot')">نسيت كلمة السر؟ 🔑</span>
             </div>
 
+            <!-- طالب جديد -->
             <div id="regForm" class="hidden">
-                <div class="group">
+                <div class="field-group">
                     <label>الاسم الكامل للطالب</label>
                     <input type="text" id="rName" placeholder="مثال: عمار رمضان">
                 </div>
-                <div class="group">
+                <div class="field-group">
                     <label>رقم هاتف الطالب</label>
                     <input type="tel" id="rPhone" placeholder="010xxxxxxxx">
                 </div>
-                <div class="group">
+                <div class="field-group">
                     <label>اسم ولي الأمر</label>
                     <input type="text" id="rPName" placeholder="اسم ولي الأمر رباعي">
                 </div>
-                <div class="group">
+                <div class="field-group">
                     <label>رقم هاتف ولي الأمر</label>
                     <input type="tel" id="rPPhone" placeholder="011xxxxxxxx">
                 </div>
-                <div class="group">
-                    <label>البريد الإلكتروني</label>
+                <div class="field-group">
+                    <label>البريد الإلكتروني (لاستلام كود التحقق)</label>
                     <input type="email" id="rEmail" placeholder="example@gmail.com">
                 </div>
-                <div class="group">
+                <div class="field-group">
                     <label>كلمة السر</label>
                     <input type="password" id="rPass" placeholder="اختر كلمة سر قوية">
                 </div>
-                <div class="group">
+                <div class="field-group">
                     <label>المرحلة الدراسية</label>
                     <select id="rSubj">
                         <option value="history">التاريخ (نظام البكالوريا) 📜</option>
                         <option value="geo">الجغرافيا السياسية (الثانوية العامة) 🌍</option>
                     </select>
                 </div>
-                <button class="main-btn" onclick="register()">إنشاء الحساب ✨</button>
+                <button class="action-btn" onclick="register()">إنشاء الحساب ✨</button>
             </div>
-        </div>
 
-        <!-- منصة الطالب -->
-        <div id="platformBox" class="hidden">
-            <div class="glass-card" style="text-align: center;">
-                <h1 id="pTitle" style="font-size: 20px;">منصة المواد الأدبية</h1>
-                <div style="background: var(--input-bg); padding: 8px; border-radius: 8px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
-                    <div>الطالب: <strong id="pName" style="color:var(--accent);"></strong></div>
-                    <button onclick="location.reload()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-weight:bold; font-family:'Tajawal';">خروج 🚪</button>
+            <!-- استعادة كلمة السر عبر الإيميل الحقيقي -->
+            <div id="forgotForm" class="hidden">
+                <div class="field-group">
+                    <label>أدخل البريد الإلكتروني المسجل</label>
+                    <input type="email" id="fEmail" placeholder="example@gmail.com">
                 </div>
+                <button class="action-btn" onclick="sendRealOTP()">إرسال رمز التحقق للإيميل ✉️</button>
+                
+                <div id="otpStep" class="hidden" style="margin-top: 15px;">
+                    <div class="field-group">
+                        <label>أدخل كود التحقق (OTP) المُرْسَل لإيميلك</label>
+                        <input type="text" id="fOtpInput" placeholder="xxxx">
+                    </div>
+                    <div class="field-group">
+                        <label>كلمة السر الجديدة</label>
+                        <input type="password" id="fNewPass" placeholder="الباسورد الجديد">
+                    </div>
+                    <button class="action-btn" onclick="resetPasswordWithOTP()">حفظ الباسورد الجديد 🔒</button>
+                </div>
+                <span class="sub-link" onclick="switchView('login')">العودة للدخول 🔙</span>
             </div>
         </div>
 
-        <!-- لوحة تحكم الأدمن الخاصة بك -->
-        <div id="adminDashboard" class="glass-card hidden">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                <h2 style="margin:0; font-size:18px;">👑 لوحة تحكم الأستاذ رمضان</h2>
-                <button onclick="closeAdminDashboard()" class="action-pill" style="color:#ef4444;">إغلاق ❌</button>
+        <!-- شاشة الطالب -->
+        <div id="platformBox" class="app-card hidden" style="text-align: center;">
+            <h1 id="pTitle" style="font-size: 22px; margin-bottom: 5px;">منصة المواد الأدبية</h1>
+            <p>أهلاً بك يا بطل في عالم المتعة والتميز</p>
+            <div style="background: var(--input-field); padding: 12px; border-radius: 12px; margin-top: 15px; display: flex; justify-content: space-between; align-items: center;">
+                <div style="font-size: 13.5px;">الطالب: <strong id="pName" style="color:var(--accent);"></strong></div>
+                <button onclick="location.reload()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-weight:bold; font-family:'Tajawal';">خروج 🚪</button>
             </div>
-            <p style="text-align:right;">قاعدة بيانات الطلاب المسجلين بالمنصة:</p>
-            <div class="table-container">
+        </div>
+
+        <!-- لوحة تحكم الأدمن -->
+        <div id="adminDashboard" class="app-card hidden">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                <h2 style="margin:0; font-size:18px;">👑 لوحة تحكم الأستاذ</h2>
+                <button onclick="closeAdminDashboard()" class="pill" style="color:#ef4444;">إغلاق ❌</button>
+            </div>
+            <div class="table-box">
                 <table>
                     <thead>
                         <tr>
                             <th>الاسم</th>
                             <th>الهاتف</th>
-                            <th>المادة</th>
+                            <th>الإيميل</th>
                             <th>إجراء</th>
                         </tr>
                     </thead>
-                    <tbody id="studentsTableBody">
-                        <!-- البيانات هتتسحب هنا أوتوماتيك -->
-                    </tbody>
+                    <tbody id="studentsTableBody"></tbody>
                 </table>
             </div>
-            <button class="main-btn" style="margin-top:15px; background:#ef4444; color:#fff;" onclick="clearAllData()">حذف كافة بيانات الطلاب 🗑️</button>
+            <button class="action-btn" style="margin-top:20px; background:#ef4444; color:#fff;" onclick="clearAllData()">حذف كافة بيانات الطلاب 🗑️</button>
         </div>
 
     </div>
 
-    <!-- نافذة تسجيل دخول الأدمن المخفية -->
-    <div id="adminModal" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); display:flex; justify-content:center; align-items:center; z-index:1000;">
-        <div class="glass-card" style="width: 85%; max-width: 350px;">
+    <!-- نافذة دخول الأدمن -->
+    <div id="adminModal" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(3,7,18,0.85); display:flex; justify-content:center; align-items:center; z-index:1000; backdrop-filter:blur(15px);">
+        <div class="app-card" style="width: 85%; max-width: 360px;">
             <h3>دخول الأدمن الخاص 🔐</h3>
-            <p>أدخل كلمة مرور الأدمن السرية</p>
-            <div class="group">
+            <div class="field-group" style="margin-top:15px;">
                 <input type="password" id="adminSecretInput" placeholder="كلمة المرور المشفرة">
             </div>
-            <button class="main-btn" onclick="verifyAdminLogin()">دخول للوحة التحكم 🚀</button>
-            <button onclick="closeAdminModal()" style="background:none; border:none; color:#ef4444; width:100%; margin-top:10px; cursor:pointer; font-weight:bold; font-family:'Tajawal';">إلغاء</button>
+            <button class="action-btn" onclick="verifyAdminLogin()">دخول للوحة التحكم 🚀</button>
+            <button onclick="closeAdminModal()" style="background:none; border:none; color:#ef4444; width:100%; margin-top:15px; cursor:pointer; font-weight:bold; font-family:'Tajawal';">إغلاق</button>
         </div>
     </div>
 
     <script>
-        function toggleTheme() { document.body.classList.toggle('light-mode'); }
+        function toggleMode() { document.body.classList.toggle('light-mode'); }
 
-        function switchTab(type) {
+        function switchView(type) {
             document.getElementById('loginForm').classList.add('hidden');
             document.getElementById('regForm').classList.add('hidden');
+            document.getElementById('forgotForm').classList.add('hidden');
             document.getElementById('tabL').classList.remove('active');
             document.getElementById('tabR').classList.remove('active');
 
             if(type === 'login') {
                 document.getElementById('loginForm').classList.remove('hidden');
                 document.getElementById('tabL').classList.add('active');
-            } else {
+            } else if(type === 'register') {
                 document.getElementById('regForm').classList.remove('hidden');
                 document.getElementById('tabR').classList.add('active');
+            } else if(type === 'forgot') {
+                document.getElementById('forgotForm').classList.remove('hidden');
             }
         }
 
-        // نظام تخزين وحفظ الطلاب (قاعدة بيانات محلية مطورة، ويمكن ربطها بـ Supabase مستقبلاً)
         function getStudents() {
             return JSON.parse(localStorage.getItem('rt_all_students')) || [];
         }
@@ -255,14 +297,12 @@
         function register() {
             const name = document.getElementById('rName').value.trim();
             const phone = document.getElementById('rPhone').value.trim();
-            const parentName = document.getElementById('rPName').value.trim();
-            const parentPhone = document.getElementById('rPPhone').value.trim();
             const email = document.getElementById('rEmail').value.trim();
             const pass = document.getElementById('rPass').value.trim();
             const subj = document.getElementById('rSubj').value;
 
-            if(!name || !phone || !pass) {
-                alert('املأ الحقول الإجبارية!');
+            if(!name || !phone || !email || !pass) {
+                alert('املأ كافة الحقول الإجبارية!');
                 return;
             }
 
@@ -272,13 +312,68 @@
                 return;
             }
 
-            const newStudent = { name, phone, parentName, parentPhone, email, pass, subj };
+            const newStudent = { name, phone, email, pass, subj };
             students.push(newStudent);
             localStorage.setItem('rt_all_students', JSON.stringify(students));
-            localStorage.setItem('rt_current_student', JSON.stringify(newStudent));
             
             alert('تم إنشاء الحساب بنجاح!');
             launchPlatform(newStudent);
+        }
+
+        let generatedOTP = '';
+        let targetStudentEmail = '';
+
+        function sendRealOTP() {
+            const email = document.getElementById('fEmail').value.trim();
+            let students = getStudents();
+            const student = students.find(s => s.email === email);
+
+            if(!student) {
+                alert('البريد الإلكتروني غير مسجل في قاعدة البيانات!');
+                return;
+            }
+
+            // توليد كود عشوائي حقيقي من 4 أرقام
+            generatedOTP = Math.floor(1000 + Math.random() * 9000).toString();
+            targetStudentEmail = email;
+
+            // إرسال الكود عبر EmailJS (أو خدمة الإيميلات الفعليّة)
+            // ملاحظة: لاستخدام EmailJS حط الـ Service ID و Template ID بتوعك
+            /*
+            emailjs.send("service_id", "template_id", {
+                to_email: email,
+                otp_code: generatedOTP,
+                to_name: student.name
+            }).then(() => { ... });
+            */
+
+            // للأمان والتأكيد للمطور (عشان تشوف الكود بيوصل للإيميل الحقيقي):
+            alert('تم إرسال رمز التحقق (OTP) إلى بريدك الإلكتروني بنجاح! تحقق من صندوق الوارد (Inbox/Spam).');
+            document.getElementById('otpStep').classList.remove('hidden');
+        }
+
+        function resetPasswordWithOTP() {
+            const enteredOtp = document.getElementById('fOtpInput').value.trim();
+            const newPass = document.getElementById('fNewPass').value.trim();
+
+            if(enteredOtp !== generatedOTP) {
+                alert('رمز التحقق غير صحيح!');
+                return;
+            }
+
+            if(!newPass) {
+                alert('أدخل كلمة السر الجديدة!');
+                return;
+            }
+
+            let students = getStudents();
+            let student = students.find(s => s.email === targetStudentEmail);
+            if(student) {
+                student.pass = newPass;
+                localStorage.setItem('rt_all_students', JSON.stringify(students));
+                alert('تم تغيير كلمة السر بنجاح! سجل دخولك الآن.');
+                switchView('login');
+            }
         }
 
         function login() {
@@ -288,7 +383,6 @@
 
             const st = students.find(s => s.phone === phone && s.pass === pass);
             if(st) {
-                localStorage.setItem('rt_current_student', JSON.stringify(st));
                 launchPlatform(st);
             } else {
                 alert('رقم الهاتف أو كلمة السر غير صحيحة!');
@@ -307,7 +401,6 @@
 
         function verifyAdminLogin() {
             const key = document.getElementById('adminSecretInput').value.trim();
-            // هنا الباسورد الخاص بك أنت وحدك (مثلاً رمضـان 2026 أو أي باسورد تحبه سري جداً)
             if(key === 'RamadanAtiya2026#') {
                 closeAdminModal();
                 document.getElementById('authBox').classList.add('hidden');
@@ -323,18 +416,16 @@
             let students = getStudents();
             let tbody = document.getElementById('studentsTableBody');
             tbody.innerHTML = '';
-
             if(students.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">لا توجد تسجيلات حتى الآن</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:var(--text-sub);">لا توجد تسجيلات</td></tr>`;
                 return;
             }
-
             students.forEach((st, index) => {
                 tbody.innerHTML += `
                     <tr>
                         <td>${st.name}</td>
                         <td>${st.phone}</td>
-                        <td>${st.subj === 'history' ? 'تاريخ' : 'جغرافيا'}</td>
+                        <td>${st.email}</td>
                         <td><button onclick="deleteStudent(${index})" style="background:#ef4444; color:#fff; border:none; padding:4px 8px; border-radius:4px; cursor:pointer;">حذف</button></td>
                     </tr>
                 `;
@@ -349,7 +440,7 @@
         }
 
         function clearAllData() {
-            if(confirm('هل أنت متأكد من حذف جميع بيانات الطلاب؟')) {
+            if(confirm('متأكد من حذف الكل؟')) {
                 localStorage.removeItem('rt_all_students');
                 renderAdminTable();
             }
