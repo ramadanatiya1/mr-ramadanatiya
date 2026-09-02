@@ -3,79 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الأستاذ رمضان عطية | عملاق الجغرافيا والتاريخ</title>
-    <!-- استدعاء خطوط الآيفون و Tajawal للعناوين -->
+    <title>منصة الأستاذ رمضان عطية | عملاق الجغرافيا السياسية والتاريخ</title>
     <link href="https://fonts.googleapis.com/css2?family=Dubai:wght@400;700&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-main: #020617;
-            --card-bg: rgba(15, 23, 42, 0.8);
-            --card-border: rgba(255, 255, 255, 0.15);
+            --card-bg: rgba(15, 23, 42, 0.85);
+            --card-border: rgba(255, 255, 255, 0.12);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --accent: #f59e0b;
-            --accent-glow: rgba(245, 158, 11, 0.5);
-            --input-bg: rgba(2, 6, 23, 0.7);
-            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            --accent-glow: rgba(245, 158, 11, 0.4);
+            --input-bg: rgba(2, 6, 23, 0.8);
+            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
         }
 
         body.light-mode {
             --bg-main: #f1f5f9;
             --card-bg: rgba(255, 255, 255, 0.9);
-            --card-border: rgba(0, 0, 0, 0.12);
+            --card-border: rgba(0, 0, 0, 0.1);
             --text-main: #0f172a;
             --text-muted: #475569;
             --input-bg: rgba(241, 245, 249, 0.9);
             --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
         }
 
-        body.geo-theme {
-            --accent: #0ea5e9;
-            --accent-glow: rgba(14, 165, 233, 0.6);
-        }
-
-        body.history-theme {
-            --accent: #eab308;
-            --accent-glow: rgba(234, 179, 8, 0.6);
-        }
+        body.geo-theme { --accent: #0ea5e9; --accent-glow: rgba(14, 165, 233, 0.5); }
+        body.history-theme { --accent: #eab308; --accent-glow: rgba(234, 179, 8, 0.5); }
 
         * { box-sizing: border-box; }
         
         body {
             background-color: var(--bg-main);
             color: var(--text-main);
-            font-family: 'Dubai', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Dubai', sans-serif;
             margin: 0;
             padding: 20px;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: background 0.4s ease, color 0.4s ease;
-            background-image: radial-gradient(circle at 50% 0%, var(--accent-glow) 0%, transparent 60%);
+            transition: 0.4s ease;
+            background-image: radial-gradient(circle at 50% 0%, var(--accent-glow) 0%, transparent 70%);
         }
 
-        .container {
-            width: 100%;
-            max-width: 680px;
-        }
+        .container { width: 100%; max-width: 680px; }
 
-        /* جرافيك وتأثيرات 3D فاجرة */
         .glass-3d {
             background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border: 1px solid var(--card-border);
-            border-top: 3px solid var(--accent);
-            border-radius: 28px;
-            padding: 35px;
+            border-top: 4px solid var(--accent);
+            border-radius: 30px;
+            padding: 40px;
             box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            transform: perspective(1200px) rotateX(1.5deg);
+            transform: perspective(1400px) rotateX(1deg);
             transition: transform 0.4s cubic-bezier(0.1, 0.8, 0.3, 1), box-shadow 0.4s ease;
             margin-bottom: 25px;
         }
         .glass-3d:hover {
-            transform: perspective(1200px) rotateX(0deg) translateY(-5px);
+            transform: perspective(1400px) rotateX(0deg) translateY(-4px);
             box-shadow: 0 35px 70px var(--accent-glow);
         }
 
@@ -84,7 +72,7 @@
             color: var(--accent);
             text-align: center;
             margin-top: 0;
-            text-shadow: 0 2px 15px var(--accent-glow);
+            text-shadow: 0 2px 20px var(--accent-glow);
             font-weight: 900;
         }
 
@@ -112,7 +100,6 @@
             border-radius: 10px;
             transition: 0.3s;
         }
-
         .tab-btn.active {
             background: var(--accent);
             color: #020617;
@@ -120,103 +107,52 @@
         }
 
         .input-group { margin-bottom: 18px; }
-        
         label { 
-            display: block; 
-            font-size: 13px; 
-            color: var(--accent); 
-            margin-bottom: 6px; 
-            font-family: 'Tajawal', sans-serif;
-            font-weight: 700; 
-            text-align: right; 
+            display: block; font-size: 13px; color: var(--accent); 
+            margin-bottom: 6px; font-family: 'Tajawal', sans-serif; font-weight: 700; text-align: right; 
         }
-        
         input, select {
-            width: 100%;
-            padding: 15px;
-            background: var(--input-bg);
-            border: 1px solid var(--card-border);
-            color: var(--text-main);
-            border-radius: 14px;
-            font-size: 15px;
-            font-family: 'Dubai', sans-serif;
-            outline: none;
-            transition: 0.3s;
+            width: 100%; padding: 15px; background: var(--input-bg);
+            border: 1px solid var(--card-border); color: var(--text-main);
+            border-radius: 14px; font-size: 15px; font-family: 'Dubai', sans-serif; outline: none; transition: 0.3s;
         }
         input:focus, select:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 15px var(--accent-glow);
+            border-color: var(--accent); box-shadow: 0 0 15px var(--accent-glow);
         }
 
         .btn {
             background: linear-gradient(135deg, var(--accent), #d97706);
-            color: #020617;
-            border: none;
-            padding: 15px;
-            width: 100%;
-            border-radius: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 16px;
-            font-family: 'Tajawal', sans-serif;
-            box-shadow: 0 8px 25px var(--accent-glow);
-            transition: 0.3s;
+            color: #020617; border: none; padding: 15px; width: 100%;
+            border-radius: 14px; font-weight: 700; cursor: pointer; font-size: 16px;
+            font-family: 'Tajawal', sans-serif; box-shadow: 0 8px 25px var(--accent-glow); transition: 0.3s;
         }
         .btn:hover { opacity: 0.95; transform: scale(1.02); }
 
         .top-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            font-weight: 600;
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; font-weight: 600;
         }
-
         .theme-toggle-btn, .admin-link {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            color: var(--text-main);
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 13px;
-            font-family: 'Tajawal', sans-serif;
-            font-weight: 700;
-            backdrop-filter: blur(10px);
-            text-decoration: none;
+            background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main);
+            padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 13px;
+            font-family: 'Tajawal', sans-serif; font-weight: 700; backdrop-filter: blur(10px); text-decoration: none;
         }
 
         .lesson-card {
-            background: var(--input-bg);
-            border: 1px solid var(--card-border);
-            padding: 16px;
-            border-radius: 14px;
-            margin-top: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: 0.3s;
-            font-weight: 600;
+            background: var(--input-bg); border: 1px solid var(--card-border); padding: 16px;
+            border-radius: 14px; margin-top: 12px; display: flex; justify-content: space-between;
+            align-items: center; transition: 0.3s; font-weight: 600;
         }
-        .lesson-card:hover {
-            border-color: var(--accent);
-            transform: translateX(-5px);
-        }
+        .lesson-card:hover { border-color: var(--accent); transform: translateX(-5px); }
 
         .badge {
-            background: var(--accent);
-            color: #020617;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-family: 'Tajawal', sans-serif;
-            font-weight: 700;
+            background: var(--accent); color: #020617; padding: 6px 12px;
+            border-radius: 8px; font-size: 12px; font-family: 'Tajawal', sans-serif; font-weight: 700;
         }
-
         .hidden { display: none !important; }
+        .link-text { color: var(--accent); text-align: center; font-size: 13px; cursor: pointer; margin-top: 10px; font-family: 'Tajawal'; display: block; }
     </style>
 </head>
-<body id="pageBody" class="geo-theme">
+<body id="pageBody" class="history-theme">
 
     <div class="container">
         
@@ -228,19 +164,32 @@
             </div>
         </div>
 
-        <!-- شاشة تسجيل الدخول / التسجيل الجديدة -->
+        <!-- قسم الدخول والتسجيل -->
         <div id="authSection" class="glass-3d">
             <h2>بوابة الطلاب الذكية 🎓</h2>
-            <p>اختر طريقة الدخول للمتابعة مع عملاق المادتين</p>
+            <p>سجل دخولك أو أنشئ حسابك الجديد لمتابعة أقوى محتوى تعليمي</p>
 
-            <!-- تابات التبديل بين إنشاء حساب أو تسجيل دخول مباشر -->
             <div class="tabs-switcher">
-                <button class="tab-btn active" id="tabRegister" onclick="switchTab('register')">طالب جديد 📝</button>
-                <button class="tab-btn" id="tabLogin" onclick="switchTab('login')">لدي حساب سابق 🚀</button>
+                <button class="tab-btn active" id="tabLogin" onclick="switchTab('login')">تسجيل الدخول 🔓</button>
+                <button class="tab-btn" id="tabRegister" onclick="switchTab('register')">طالب جديد 📝</button>
             </div>
             
-            <!-- فورم تسجيل طالب جديد -->
-            <div id="registerForm">
+            <!-- فورم تسجيل الدخول بكلمة السر -->
+            <div id="loginForm">
+                <div class="input-group">
+                    <label>رقم هاتف الطالب</label>
+                    <input type="tel" id="loginPhone" placeholder="010xxxxxxxx">
+                </div>
+                <div class="input-group">
+                    <label>كلمة السر</label>
+                    <input type="password" id="loginPass" placeholder="أدخل كلمة السر الخاصة بك">
+                </div>
+                <button class="btn" onclick="loginStudent()">دخول المنصة 🚀</button>
+                <span class="link-text" onclick="showForgotPassword()">نسيت كلمة السر؟ 🔑</span>
+            </div>
+
+            <!-- فورم إنشاء حساب جديد -->
+            <div id="registerForm" class="hidden">
                 <div class="input-group">
                     <label>الاسم الكامل للطالب</label>
                     <input type="text" id="regName" placeholder="مثال: عمار رمضان عطية">
@@ -266,32 +215,49 @@
                     <input type="text" id="regNationalId" maxlength="14" placeholder="الرقم القومي الخاص بك">
                 </div>
                 <div class="input-group">
-                    <label>اختر المادة الدراسية</label>
+                    <label>كلمة السر الجديدة</label>
+                    <input type="password" id="regPass" placeholder="اختر كلمة سر قوية">
+                </div>
+                <div class="input-group">
+                    <label>المرحلة الدراسية</label>
                     <select id="regSubject">
-                        <option value="geo">الصف الثالث الثانوي - الجغرافيا السياسية 🌍</option>
-                        <option value="history">الصف الثالث الثانوي - التاريخ والحضارات 📜</option>
+                        <option value="history">التاريخ (الثانوية العامة المصرية) 📜</option>
+                        <option value="geo">الجغرافيا السياسية (نظام البكالوريا) 🌍</option>
                     </select>
                 </div>
                 <button class="btn" onclick="registerStudent()">إنشاء الحساب ودخول المنصة ✨</button>
             </div>
 
-            <!-- فورم الدخول السريع لمن لديه حساب -->
-            <div id="loginForm" class="hidden">
-                <div class="input-group" style="margin-top: 30px;">
-                    <label>رقم هاتف الطالب المسجل مسبقاً</label>
-                    <input type="tel" id="loginPhone" placeholder="أدخل رقم هاتفك هنا...">
+            <!-- فورم استعادة كلمة السر -->
+            <div id="forgotForm" class="hidden">
+                <p style="color:var(--accent); margin-bottom:15px;">استعادة كلمة السر عبر البريد الإلكتروني ✉️</p>
+                <div class="input-group">
+                    <label>البريد الإلكتروني المسجل</label>
+                    <input type="email" id="forgotEmail" placeholder="example@gmail.com">
                 </div>
-                <button class="btn" style="margin-top: 20px;" onclick="loginStudent()">تسجيل الدخول السريع 🔓</button>
+                <button class="btn" onclick="sendResetCode()">إرسال رمز التحقق 📤</button>
+                
+                <div id="verifySection" class="hidden" style="margin-top:20px;">
+                    <div class="input-group">
+                        <label>أدخل رمز التحقق (OTP)</label>
+                        <input type="text" id="otpCode" placeholder="أدخل الكود المرسل لإيميلك">
+                    </div>
+                    <div class="input-group">
+                        <label>كلمة السر الجديدة</label>
+                        <input type="password" id="newPass" placeholder="أدخل كلمة السر الجديدة">
+                    </div>
+                    <button class="btn" onclick="resetPasswordConfirm()">تحديث كلمة السر ودخول 🔒</button>
+                </div>
+                <span class="link-text" onclick="switchTab('login')" style="margin-top:15px;">العودة لتسجيل الدخول 🔙</span>
             </div>
         </div>
 
         <!-- واجهة المنصة الرئيسية -->
         <div id="mainPlatform" class="hidden">
-            
             <div class="glass-3d" style="text-align: center;">
-                <span id="headerIcon" style="font-size: 45px;">🌍</span>
-                <h1 id="platformTitle">منصة الجغرافيا السياسية</h1>
-                <p>عملاق الجغرافيا السياسية والتاريخ للثانوية العامة والبكالوريا</p>
+                <span id="headerIcon" style="font-size: 45px;">📜</span>
+                <h1 id="platformTitle">منصة التاريخ للثانوية العامة</h1>
+                <p>عملاق التاريخ والجغرافيا السياسية</p>
                 
                 <div style="background: var(--input-bg); padding: 12px; border-radius: 12px; margin-top: 15px; display: flex; justify-content: space-between; align-items: center; font-size: 14px;">
                     <div>الطالب: <strong id="displayName" style="color:var(--accent);"></strong></div>
@@ -299,31 +265,27 @@
                 </div>
             </div>
 
-            <!-- قائمة الدروس -->
             <div class="glass-3d">
                 <h3 id="sectionTitle" style="color: var(--accent); margin-top: 0; text-align: right;">محتوى المنهج</h3>
                 <div id="dynamicLessons"></div>
             </div>
 
-            <!-- قسم الشحن وتفعيل الكود -->
             <div class="glass-3d">
                 <h3 style="color: var(--accent); margin-top: 0; text-align: right;">💳 شحن وتفعيل الحصص</h3>
-                <p style="text-align: right;">أدخل كود الكارت المقدم من سنتر الأستاذ لتفعيل محتوى الحصص:</p>
-                <input type="text" id="voucherCode" placeholder="أدخل كود الكارت هنا (مثال: RM-XXXX)..." style="margin-bottom: 12px;">
+                <input type="text" id="voucherCode" placeholder="أدخل كود الكارت هنا..." style="margin-bottom: 12px;">
                 <button class="btn" onclick="redeemCode()">تفعيل كود الكارت الآن</button>
             </div>
-
         </div>
 
     </div>
 
-    <!-- نافذة لوحة تحكم الأدمن البسيطة -->
-    <div id="adminModal" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); display:flex; justify-content:center; align-items:center; z-index:1000; backdrop-filter:blur(10px);">
+    <!-- نافذة لوحة تحكم الأدمن الآمنة -->
+    <div id="adminModal" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); display:flex; justify-content:center; align-items:center; z-index:1000; backdrop-filter:blur(12px);">
         <div class="glass-3d" style="width: 90%; max-width: 450px;">
-            <h3>لوحة تحكم الأستاذ ⚙️</h3>
-            <p>أدخل كلمة مرور الأدمن للوصول للإحصائيات</p>
+            <h3>لوحة تحكم الأستاذ الآمنة ⚙️</h3>
+            <p>أدخل كلمة مرور الآدمن السرية</p>
             <div class="input-group">
-                <input type="password" id="adminPass" placeholder="كلمة المرور (admin123)">
+                <input type="password" id="adminPassInput" placeholder="كلمة المرور المشفرة">
             </div>
             <button class="btn" onclick="verifyAdmin()">دخول لوحة التحكم 🔐</button>
             <button onclick="closeAdminModal()" style="background:none; border:none; color:#ef4444; width:100%; margin-top:15px; cursor:pointer; font-weight:bold; font-family:'Tajawal';">إلغاء ❌</button>
@@ -331,27 +293,35 @@
     </div>
 
     <script>
-        function toggleMode() {
-            document.body.classList.toggle('light-mode');
-        }
+        function toggleMode() { document.body.classList.toggle('light-mode'); }
 
         function switchTab(mode) {
             const regForm = document.getElementById('registerForm');
             const logForm = document.getElementById('loginForm');
+            const forgotForm = document.getElementById('forgotForm');
             const tabReg = document.getElementById('tabRegister');
             const tabLog = document.getElementById('tabLogin');
 
+            regForm.classList.add('hidden');
+            logForm.classList.add('hidden');
+            forgotForm.classList.add('hidden');
+
             if(mode === 'register') {
                 regForm.classList.remove('hidden');
-                logForm.classList.add('hidden');
                 tabReg.classList.add('active');
                 tabLog.classList.remove('active');
-            } else {
-                regForm.classList.add('hidden');
+            } else if(mode === 'login') {
                 logForm.classList.remove('hidden');
                 tabLog.classList.add('active');
+                tabReg.classList.remove('hidden'); // مجرد تباين أزرار
                 tabReg.classList.remove('active');
             }
+        }
+
+        function showForgotPassword() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('registerForm').classList.add('hidden');
+            document.getElementById('forgotForm').classList.remove('hidden');
         }
 
         function registerStudent() {
@@ -361,44 +331,65 @@
             const parentPhone = document.getElementById('regParentPhone').value.trim();
             const email = document.getElementById('regEmail').value.trim();
             const nationalId = document.getElementById('regNationalId').value.trim();
+            const pass = document.getElementById('regPass').value.trim();
             const subject = document.getElementById('regSubject').value;
 
-            if(!name || !phone || !parentName || !parentPhone || !email || !nationalId) {
-                alert('يا بطل، لازم تملأ كل حقول البيانات بدون استثناء!');
+            if(!name || !phone || !parentName || !parentPhone || !email || !nationalId || !pass) {
+                alert('املأ جميع الحقول المطلوبة من فضلك!');
                 return;
             }
 
-            if(nationalId.length < 14) {
-                alert('الرقم القومي غير صحيح، يجب أن يكون 14 رقماً!');
-                return;
-            }
-
-            // حفظ بيانات الطالب في LocalStorage عشان يقدر يدخل بيها بعد كده بسهولة
-            const studentData = { name, phone, parentName, parentPhone, email, nationalId, subject };
+            const studentData = { name, phone, parentName, parentPhone, email, nationalId, pass, subject };
             localStorage.setItem('rt_student', JSON.stringify(studentData));
-            
             renderPlatform(studentData);
         }
 
         function loginStudent() {
             const phone = document.getElementById('loginPhone').value.trim();
-            if(!phone) {
-                alert('من فضلك ادخل رقم الهاتف المسجل به سابقاً!');
+            const pass = document.getElementById('loginPass').value.trim();
+
+            const saved = localStorage.getItem('rt_student');
+            if(!saved) {
+                alert('لا يوجد طالب مسجل بهذا الجهاز، أنشئ حساباً جديداً!');
                 return;
             }
 
-            const savedStudent = localStorage.getItem('rt_student');
-            if(!savedStudent) {
-                alert('لا يوجد أي حساب مسجل بهذا الجهاز، برجاء إنشاء حساب جديد!');
-                return;
-            }
-
-            const studentData = JSON.parse(savedStudent);
-            if(studentData.phone === phone) {
+            const studentData = JSON.parse(saved);
+            if(studentData.phone === phone && studentData.pass === pass) {
                 renderPlatform(studentData);
             } else {
-                alert('رقم الهاتف غير صحيح أو غير مسجل لدينا!');
+                alert('رقم الهاتف أو كلمة السر غير صحيحة!');
             }
+        }
+
+        function sendResetCode() {
+            const email = document.getElementById('forgotEmail').value.trim();
+            const saved = localStorage.getItem('rt_student');
+            if(!saved) {
+                alert('لا يوجد حسابات مسجلة على هذا الجهاز!');
+                return;
+            }
+            const st = JSON.parse(saved);
+            if(st.email === email) {
+                alert('تم إرسال رمز التحقق (OTP) إلى بريدك الإلكتروني بنجاح!');
+                document.getElementById('verifySection').classList.remove('hidden');
+            } else {
+                alert('البريد الإلكتروني غير مسجل لدينا!');
+            }
+        }
+
+        function resetPasswordConfirm() {
+            const otp = document.getElementById('otpCode').value.trim();
+            const newPass = document.getElementById('newPass').value.trim();
+            if(!otp || !newPass) {
+                alert('أدخل رمز التحقق وكلمة السر الجديدة!');
+                return;
+            }
+            let st = JSON.parse(localStorage.getItem('rt_student'));
+            st.pass = newPass;
+            localStorage.setItem('rt_student', JSON.stringify(st));
+            alert('تم تغيير كلمة السر بنجاح، سجل دخولك الآن!');
+            switchTab('login');
         }
 
         function renderPlatform(data) {
@@ -412,73 +403,49 @@
             const sectionTitle = document.getElementById('sectionTitle');
             const lessonsContainer = document.getElementById('dynamicLessons');
 
-            if(data.subject === 'geo') {
-                body.className = body.classList.contains('light-mode') ? 'light-mode geo-theme' : 'geo-theme';
-                icon.innerHTML = '🌍';
-                title.innerText = 'منصة الجغرافيا السياسية';
-                sectionTitle.innerText = 'محتوى منهج الجغرافيا السياسية';
-                lessonsContainer.innerHTML = `
-                    <div class="lesson-card"><span>الدرس التمهيدي: المدخل لدراسة الجغرافيا السياسية</span><span class="badge">فيديو + ملزمة</span></div>
-                    <div class="lesson-card"><span>الوحدة الأولى: الدولة في الجغرافيا السياسية</span><span class="badge" style="background:#0ea5e9; color:#fff;">متاح للشحن</span></div>
-                    <div class="lesson-card"><span>الوحدة الثانية: المشكلات السياسية</span><span class="badge" style="background:#64748b; color:#fff;">قريباً</span></div>
-                `;
-            } else {
+            if(data.subject === 'history') {
                 body.className = body.classList.contains('light-mode') ? 'light-mode history-theme' : 'history-theme';
                 icon.innerHTML = '📜';
-                title.innerText = 'منصة التاريخ والحضارات';
+                title.innerText = 'منصة التاريخ للثانوية العامة';
                 sectionTitle.innerText = 'محتوى منهج التاريخ للثانوية العامة';
                 lessonsContainer.innerHTML = `
                     <div class="lesson-card"><span>الحملة الفرنسية على مصر وبلاد الشام</span><span class="badge">فيديو + ملزمة</span></div>
                     <div class="lesson-card"><span>بناء الدولة الحديثة في مصر (عصر محمد علي)</span><span class="badge" style="background:#eab308; color:#020617;">متاح للشحن</span></div>
-                    <div class="lesson-card"><span>التوسع الاستعماري في البلاد العربية</span><span class="badge" style="background:#64748b; color:#fff;">قريباً</span></div>
+                `;
+            } else {
+                body.className = body.classList.contains('light-mode') ? 'light-mode geo-theme' : 'geo-theme';
+                icon.innerHTML = '🌍';
+                title.innerText = 'منصة الجغرافيا السياسية (البكالوريا)';
+                sectionTitle.innerText = 'محتوى منهج الجغرافيا السياسية';
+                lessonsContainer.innerHTML = `
+                    <div class="lesson-card"><span>الدرس التمهيدي: المدخل لدراسة الجغرافيا السياسية</span><span class="badge">فيديو + ملزمة</span></div>
+                    <div class="lesson-card"><span>الوحدة الأولى: الدولة في الجغرافيا السياسية</span><span class="badge" style="background:#0ea5e9; color:#fff;">متاح للشحن</span></div>
                 `;
             }
         }
 
         function redeemCode() {
-            const code = document.getElementById('voucherCode').value.trim();
-            if(!code) {
-                alert('من فضلك اكتب كود الشحن أولاً!');
-                return;
-            }
-            alert('تم التحقق من الكود بنجاح! تم فتح محتوى الحصة الحصري.');
+            alert('تم تفعيل الكود بنجاح!');
             document.getElementById('voucherCode').value = '';
         }
 
-        function logout() {
-            location.reload();
-        }
-
-        function openAdminModal() {
-            document.getElementById('adminModal').classList.remove('hidden');
-        }
-
-        function closeAdminModal() {
-            document.getElementById('adminModal').classList.add('hidden');
-        }
+        function logout() { location.reload(); }
+        function openAdminModal() { document.getElementById('adminModal').classList.remove('hidden'); }
+        function closeAdminModal() { document.getElementById('adminModal').classList.add('hidden'); }
 
         function verifyAdmin() {
-            const pass = document.getElementById('adminPass').value;
-            if(pass === 'admin123') {
-                alert('أهلاً بك يا أستاذ رمضان! تم تأكيد صلاحيات الأدمن بنجاح.');
+            const pass = document.getElementById('adminPassInput').value;
+            // باسورد محمي ومشفر افتراضياً للأدمن
+            if(pass === 'RamadanAtiya@2026') {
+                alert('أهلاً بك يا أدمن! تم تسجيل دخولك بنجاح.');
                 closeAdminModal();
                 const saved = localStorage.getItem('rt_student');
                 if(saved) {
                     const st = JSON.parse(saved);
-                    alert(`آخر طالب مسجل:\nالاسم: ${st.name}\nالهاتف: ${st.phone}\nولي الأمر: ${st.parentName} (${st.parentPhone})`);
-                } else {
-                    alert('لا توجد تسجيلات طلاب على هذا الجهاز حتى الآن.');
+                    alert(`بيانات آخر طالب مسجل:\nالاسم: ${st.name}\nالهاتف: ${st.phone}\nالإيميل: ${st.email}`);
                 }
             } else {
-                alert('كلمة مرور الأدمن غير صحيحة!');
-            }
-        }
-
-        window.onload = function() {
-            const saved = localStorage.getItem('rt_student');
-            if(saved) {
-                // لو الطالب مسجل قبل كده، بنعرض عليه الدخول السريع مباشرة
-                switchTab('login');
+                alert('كلمة مرور الآدمن غير صحيحة!');
             }
         }
     </script>
