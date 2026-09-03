@@ -17,13 +17,12 @@
             --card-border: rgba(255, 255, 255, 0.12);
             --text-main: #f8fafc;
             --text-sub: #94a3b8;
-            --accent: #f59e0b; /* افتراضي التاريخ (ذهبي ملكي) */
+            --accent: #f59e0b;
             --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
             --input-bg: rgba(5, 11, 20, 0.95);
             --shadow-3d: 0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 30px rgba(245, 158, 11, 0.15);
         }
 
-        /* تحويل ديناميكي لحرارة الثيم حسب المادة المختارة */
         body.theme-history {
             --accent: #f59e0b;
             --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
@@ -52,7 +51,7 @@
             transition: background 0.5s ease;
         }
 
-        .wrapper { width: 100%; max-width: 440px; }
+        .wrapper { width: 100%; max-width: 480px; }
 
         .app-card-3d {
             background: var(--card-surface);
@@ -72,7 +71,6 @@
             text-align: center;
             margin-top: 0;
             font-weight: 800;
-            letter-spacing: -0.3px;
         }
 
         p { color: var(--text-sub); text-align: center; font-size: 13px; margin-bottom: 20px; }
@@ -96,7 +94,7 @@
 
         label {
             display: block; font-size: 12px; color: var(--accent); margin-bottom: 5px;
-            font-weight: 700; text-align: right; transition: color 0.3s;
+            font-weight: 700; text-align: right;
         }
 
         input, select {
@@ -122,6 +120,32 @@
             padding: 6px 14px; border-radius: 18px; cursor: pointer; font-size: 12px; font-weight: 700;
         }
 
+        /* ستايل الحصص والاشتراكات داخل منصة الطالب */
+        .lesson-card {
+            background: var(--input-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 12px;
+            text-align: right;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .lesson-title { font-size: 14px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
+        .lesson-desc { font-size: 11.5px; color: var(--text-sub); }
+        .watch-btn {
+            background: var(--accent-gradient);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
         .table-box { width: 100%; overflow-x: auto; margin-top: 15px; }
         table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: right; }
         th, td { padding: 10px 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
@@ -140,7 +164,7 @@
             <button class="pill-3d" onclick="openAdminModal()">⚙️ لوحة الأدمن</button>
         </div>
 
-        <!-- بوابة الطلاب -->
+        <!-- بوابة التسجيل والدخول -->
         <div id="authBox" class="app-card-3d">
             <h2>بوابة الطلاب الذكية 🎓</h2>
             <p>سجل بياناتك كاملة للمتابعة والانغماس في النظام</p>
@@ -164,10 +188,10 @@
                 <span class="sub-link" onclick="switchView('forgot')">نسيت كلمة السر؟ 🔑</span>
             </div>
 
-            <!-- طالب جديد (بالبيانات الكاملة وتحديد المادة ديناميكياً) -->
+            <!-- طالب جديد -->
             <div id="regForm" class="hidden">
                 <div class="field-group">
-                    <label>اختر المادة الدراسية (يتغير الثيم تلقائياً)</label>
+                    <label>اختر المادة الدراسية الأساسية</label>
                     <select id="rSubj" onchange="changeTheme(this.value)">
                         <option value="history">التاريخ (النظام الملكي الذهبي) 📜</option>
                         <option value="geo">الجغرافيا السياسية (نظام الفضاء السيادي) 🌍</option>
@@ -227,13 +251,21 @@
             </div>
         </div>
 
-        <!-- شاشة الطالب -->
-        <div id="platformBox" class="app-card-3d hidden" style="text-align: center;">
-            <h2 id="platformTitle" style="font-size: 20px;">منصة الأستاذ رمضان عطية</h2>
-            <p>أهلاً بك يا بطل في قمة التفوق</p>
-            <div style="background: var(--input-bg); padding: 15px; border-radius: 14px; margin-top: 15px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,255,255,0.08);">
+        <!-- شاشة الطالب والحصص والاشتراكات -->
+        <div id="platformBox" class="app-card-3d hidden">
+            <h2 id="platformTitle" style="font-size: 20px; margin-bottom: 5px;">منصة الأستاذ رمضان عطية</h2>
+            <p>أهلاً بك يا بطل في قمة التفوق التعليمي</p>
+            
+            <div style="background: var(--input-bg); padding: 12px; border-radius: 14px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,255,255,0.08);">
                 <div style="font-size: 13px;">الطالب: <strong id="pName" style="color:var(--accent);"></strong></div>
-                <button onclick="location.reload()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-weight:bold;">خروج 🚪</button>
+                <button onclick="location.reload()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-weight:bold; font-size:12px;">خروج 🚪</button>
+            </div>
+
+            <h3 style="text-align: right; font-size: 15px; margin-bottom: 12px;">📚 الحصص والكورسات المتاحة:</h3>
+            
+            <!-- قائمة الحصص والاشتراكات -->
+            <div id="lessonsContainer">
+                <!-- سيتم ملؤها ديناميكياً حسب المادة -->
             </div>
         </div>
 
@@ -393,7 +425,47 @@
             document.getElementById('platformBox').classList.remove('hidden');
             document.getElementById('pName').innerText = st.name;
             changeTheme(st.subj || 'history');
-            document.getElementById('platformTitle').innerText = st.subj === 'geo' ? 'منصة الجغرافيا السياسية 🌍' : 'منصة التاريخ 📜';
+            
+            const container = document.getElementById('lessonsContainer');
+            container.innerHTML = '';
+
+            if(st.subj === 'geo') {
+                document.getElementById('platformTitle').innerText = 'منصة الجغرافيا السياسية 🌍';
+                container.innerHTML = `
+                    <div class="lesson-card">
+                        <div>
+                            <div class="lesson-title">المحاضرة الأولى: الدولة ومقوماتها</div>
+                            <div class="lesson-desc">شرح تفصيلي للحدود السياسية والمشكلات</div>
+                        </div>
+                        <button class="watch-btn" onclick="alert('جارٍ فتح المحاضرة...')">مشاهدة 📺</button>
+                    </div>
+                    <div class="lesson-card">
+                        <div>
+                            <div class="lesson-title">المحاضرة الثانية: النظام العالمي الجديد</div>
+                            <div class="lesson-desc">تحليل التكتلات الاقتصادية والتحالفات</div>
+                        </div>
+                        <button class="watch-btn" onclick="alert('جارٍ فتح المحاضرة...')">مشاهدة 📺</button>
+                    </div>
+                `;
+            } else {
+                document.getElementById('platformTitle').innerText = 'منصة التاريخ 📜';
+                container.innerHTML = `
+                    <div class="lesson-card">
+                        <div>
+                            <div class="lesson-title">الحصة الأولى: الحملة الفرنسية على مصر</div>
+                            <div class="lesson-desc">مقاومة الشعب المصري وأثر الحملة</div>
+                        </div>
+                        <button class="watch-btn" onclick="alert('جارٍ فتح الحصة...')">مشاهدة 📺</button>
+                    </div>
+                    <div class="lesson-card">
+                        <div>
+                            <div class="lesson-title">الحصة الثانية: بناء الدولة الحديثة (محمد علي)</div>
+                            <div class="lesson-desc">الاحتكار والسياسة الاقتصادية والعسكرية</div>
+                        </div>
+                        <button class="watch-btn" onclick="alert('جارٍ فتح الحصة...')">مشاهدة 📺</button>
+                    </div>
+                `;
+            }
         }
 
         function openAdminModal() { document.getElementById('adminModal').classList.remove('hidden'); }
