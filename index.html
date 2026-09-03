@@ -3,40 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الأستاذ رمضان عطية | النظام السيادي المتطور</title>
-    <!-- استدعاء خطوط أبل الرسمية وتطبيقات الموبايل الفخمة -->
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700;800&family=Tajawal:wght@500;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        (function(){
-            emailjs.init("YOUR_PUBLIC_KEY");
-        })();
-    </script>
+    <title>منصة الأستاذ رمضان عطية</title>
+    <!-- خطوط أبل الرسمية SF Pro -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;900&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'SF Pro Display';
+            src: local('SF Pro Display'), local('SFProDisplay-Regular'), url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff') format('woff');
+        }
+
         :root {
-            --bg-deep: #020617;
-            --card-surface: rgba(15, 23, 42, 0.75);
-            --card-border: rgba(255, 255, 255, 0.12);
+            --bg-deep: #050b14;
+            --card-surface: rgba(13, 22, 38, 0.85);
+            --card-border: rgba(255, 255, 255, 0.1);
             --text-main: #f8fafc;
             --text-sub: #94a3b8;
             --accent: #f59e0b;
             --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            --input-bg: rgba(2, 6, 23, 0.85);
-            --shadow-3d: 0 30px 60px -12px rgba(0, 0, 0, 0.9), inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
-        }
-
-        /* 3D Dynamic Theme: History (الملكي الذهبي) */
-        body.theme-history {
-            --accent: #f59e0b;
-            --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
-            background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #020617 75%);
-        }
-
-        /* 3D Dynamic Theme: Geography (السيادي الفضائي) */
-        body.theme-geo {
-            --accent: #0ea5e9;
-            --accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%);
-            background: radial-gradient(circle at 50% 0%, #082f49 0%, #020617 75%);
+            --input-bg: rgba(5, 11, 20, 0.9);
+            --shadow-3d: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
         }
 
         * { box-sizing: border-box; }
@@ -44,135 +29,97 @@
         body {
             background-color: var(--bg-deep);
             color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Tajawal", "Cairo", sans-serif;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, "Tajawal", sans-serif;
             margin: 0;
             padding: 20px;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            perspective: 1200px;
-            overflow-x: hidden;
-            transition: background 0.6s ease;
         }
 
-        .wrapper { width: 100%; max-width: 440px; transform-style: preserve-3d; }
+        .wrapper { width: 100%; max-width: 440px; }
 
         .app-card-3d {
             background: var(--card-surface);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
+            backdrop-filter: blur(25px);
             border: 1px solid var(--card-border);
             border-top: 4px solid var(--accent);
-            border-radius: 32px;
-            padding: 35px 25px;
+            border-radius: 28px;
+            padding: 30px 20px;
             box-shadow: var(--shadow-3d);
-            transform: translateZ(20px);
-            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s ease;
-            position: relative;
         }
 
-        .app-card-3d:hover {
-            transform: translateZ(35px) rotateX(1deg);
-        }
-
-        h1, h2, h3 {
+        h2, h3 {
             font-family: 'Tajawal', sans-serif;
             color: var(--accent);
             text-align: center;
             margin-top: 0;
             font-weight: 900;
-            letter-spacing: -0.5px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
-        p { color: var(--text-sub); text-align: center; font-size: 13px; margin-bottom: 25px; }
+        p { color: var(--text-sub); text-align: center; font-size: 13px; margin-bottom: 20px; }
 
         .switcher-3d {
-            display: flex;
-            background: var(--input-bg);
-            border-radius: 16px;
-            padding: 5px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(255,255,255,0.06);
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.6);
+            display: flex; background: var(--input-bg); border-radius: 14px; padding: 4px; margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
         .switch-btn-3d {
-            flex: 1; background: transparent; border: none; padding: 12px; color: var(--text-sub);
-            font-family: 'Tajawal', sans-serif; font-weight: 700; font-size: 13px; cursor: pointer; border-radius: 12px; transition: 0.3s;
+            flex: 1; background: transparent; border: none; padding: 10px; color: var(--text-sub);
+            font-family: 'Tajawal', sans-serif; font-weight: 700; font-size: 13px; cursor: pointer; border-radius: 10px; transition: 0.3s;
         }
-        .switch-btn-3d.active {
-            background: var(--accent-gradient);
-            color: #ffffff;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 15px var(--accent);
-            transform: scale(1.02);
-        }
+        .switch-btn-3d.active { background: var(--accent-gradient); color: #050b14; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); }
 
-        .field-group { margin-bottom: 16px; transform-style: preserve-3d; }
+        .field-group { margin-bottom: 12px; }
 
         label {
-            display: block; font-size: 11.5px; color: var(--accent); margin-bottom: 6px;
+            display: block; font-size: 11.5px; color: var(--accent); margin-bottom: 5px;
             font-family: 'Tajawal', sans-serif; font-weight: 700; text-align: right;
         }
 
         input, select {
-            width: 100%; padding: 14px 18px; background: var(--input-bg);
+            width: 100%; padding: 12px 14px; background: var(--input-bg);
             border: 1px solid rgba(255, 255, 255, 0.08); color: var(--text-main);
-            border-radius: 16px; font-size: 14px; font-family: inherit; outline: none;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px; font-size: 14px; font-family: inherit; outline: none; transition: 0.3s;
         }
-        input:focus, select:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 20px var(--accent), inset 0 2px 5px rgba(0,0,0,0.8);
-            transform: translateZ(5px);
-        }
+        input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 12px rgba(245, 158, 11, 0.25); }
 
         .action-btn-3d {
-            background: var(--accent-gradient); color: #ffffff; border: none; padding: 16px; width: 100%;
-            border-radius: 16px; font-weight: 900; cursor: pointer; font-size: 15px; font-family: 'Tajawal', sans-serif;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 4px 12px var(--accent);
-            transition: all 0.3s ease; margin-top: 5px;
+            background: var(--accent-gradient); color: #050b14; border: none; padding: 14px; width: 100%;
+            border-radius: 12px; font-weight: 900; cursor: pointer; font-size: 15px; font-family: 'Tajawal', sans-serif;
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.25); transition: 0.3s; margin-top: 5px;
         }
-        .action-btn-3d:hover {
-            transform: translateY(-3px) translateZ(10px);
-            filter: brightness(1.1);
-        }
-        .action-btn-3d:active { transform: translateY(1px); }
+        .action-btn-3d:hover { filter: brightness(1.05); }
 
-        .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding: 0 5px; }
+        .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 0 5px; }
         .pill-3d {
-            background: var(--card-surface); border: 1px solid rgba(255, 255, 255, 0.12); color: var(--text-main);
-            padding: 8px 16px; border-radius: 22px; cursor: pointer; font-size: 12px; font-family: 'Tajawal', sans-serif; font-weight: 700;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4); backdrop-filter: blur(10px); transition: 0.3s;
+            background: var(--card-surface); border: 1px solid rgba(255, 255, 255, 0.1); color: var(--text-main);
+            padding: 6px 14px; border-radius: 18px; cursor: pointer; font-size: 12px; font-family: 'Tajawal', sans-serif; font-weight: 700;
         }
-        .pill-3d:hover { border-color: var(--accent); transform: translateY(-2px); }
 
         .table-box { width: 100%; overflow-x: auto; margin-top: 15px; }
-        table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: right; }
-        th, td { padding: 12px 10px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: right; }
+        th, td { padding: 10px 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
         th { color: var(--accent); font-family: 'Tajawal'; }
 
-        .sub-link { color: var(--accent); text-align: center; font-size: 12px; cursor: pointer; margin-top: 12px; font-family: 'Tajawal'; display: block; font-weight: 700; }
+        .sub-link { color: var(--accent); text-align: center; font-size: 12px; cursor: pointer; margin-top: 10px; font-family: 'Tajawal'; display: block; font-weight: 700; }
         .hidden { display: none !important; }
     </style>
 </head>
-<body class="theme-history">
+<body>
 
     <div class="wrapper">
         
         <div class="top-nav">
             <span style="font-size: 12px; color: var(--text-sub); font-weight: 600;">منصة الأستاذ / رمضان عطية</span>
-            <div>
-                <button class="pill-3d" onclick="openAdminModal()">⚙️ الآدمن</button>
-            </div>
+            <button class="pill-3d" onclick="openAdminModal()">⚙️ الآدمن</button>
         </div>
 
-        <!-- بوابة الطلاب 3D -->
+        <!-- بوابة الطلاب -->
         <div id="authBox" class="app-card-3d">
             <h2>بوابة الطلاب الذكية 🎓</h2>
-            <p>سجل دخولك أو أنشئ حسابك لتنغمس في أقوى تجربة تعليمية</p>
+            <p>سجل بياناتك كاملة للمتابعة</p>
 
             <div class="switcher-3d">
                 <button class="switch-btn-3d active" id="tabL" onclick="switchView('login')">تسجيل الدخول 🔓</button>
@@ -193,15 +140,27 @@
                 <span class="sub-link" onclick="switchView('forgot')">نسيت كلمة السر؟ 🔑</span>
             </div>
 
-            <!-- طالب جديد -->
+            <!-- طالب جديد (بالبيانات الكاملة) -->
             <div id="regForm" class="hidden">
                 <div class="field-group">
-                    <label>الاسم الكامل للطالب</label>
-                    <input type="text" id="rName" placeholder="مثال: عمار رمضان">
+                    <label>اسم الطالب الكامل</label>
+                    <input type="text" id="rName" placeholder="ثلاثي أو رباعي">
                 </div>
                 <div class="field-group">
                     <label>رقم هاتف الطالب</label>
                     <input type="tel" id="rPhone" placeholder="010xxxxxxxx">
+                </div>
+                <div class="field-group">
+                    <label>الرقم القومي (14 رقم)</label>
+                    <input type="text" id="rNID" maxlength="14" placeholder="أدخل الرقم القومي">
+                </div>
+                <div class="field-group">
+                    <label>اسم ولي الأمر</label>
+                    <input type="text" id="rPName" placeholder="اسم ولي الأمر">
+                </div>
+                <div class="field-group">
+                    <label>رقم هاتف ولي الأمر</label>
+                    <input type="tel" id="rPPhone" placeholder="011xxxxxxxx">
                 </div>
                 <div class="field-group">
                     <label>البريد الإلكتروني (لاستلام كود التحقق)</label>
@@ -209,55 +168,48 @@
                 </div>
                 <div class="field-group">
                     <label>كلمة السر</label>
-                    <input type="password" id="rPass" placeholder="اختر كلمة سر قوية">
-                </div>
-                <div class="field-group">
-                    <label>المادة الدراسية المفضلة (تتغير 3D تلقائياً)</label>
-                    <select id="rSubj" onchange="previewTheme(this.value)">
-                        <option value="history">التاريخ (النظام الملكي الفخم) 📜</option>
-                        <option value="geo">الجغرافيا السياسية (النظام السيادي الفضائي) 🌍</option>
-                    </select>
+                    <input type="password" id="rPass" placeholder="اختر كلمة سر">
                 </div>
                 <button class="action-btn-3d" onclick="register()">إنشاء الحساب ✨</button>
             </div>
 
-            <!-- استعادة كلمة السر عبر الإيميل الحقيقي -->
+            <!-- استعادة كلمة السر -->
             <div id="forgotForm" class="hidden">
                 <div class="field-group">
                     <label>أدخل البريد الإلكتروني المسجل</label>
                     <input type="email" id="fEmail" placeholder="example@gmail.com">
                 </div>
-                <button class="action-btn-3d" onclick="sendRealOTP()">إرسال رمز التحقق للإيميل ✉️</button>
+                <button class="action-btn-3d" onclick="sendOTP()">إرسال رمز التحقق للإيميل ✉️</button>
                 
-                <div id="otpStep" class="hidden" style="margin-top: 15px;">
+                <div id="otpStep" class="hidden" style="margin-top: 12px;">
                     <div class="field-group">
-                        <label>أدخل كود التحقق (OTP) المُرْسَل لإيميلك</label>
+                        <label>أدخل كود التحقق (OTP)</label>
                         <input type="text" id="fOtpInput" placeholder="xxxx">
                     </div>
                     <div class="field-group">
                         <label>كلمة السر الجديدة</label>
                         <input type="password" id="fNewPass" placeholder="الباسورد الجديد">
                     </div>
-                    <button class="action-btn-3d" onclick="resetPasswordWithOTP()">حفظ الباسورد الجديد 🔒</button>
+                    <button class="action-btn-3d" onclick="resetPassword()">حفظ الباسورد الجديد 🔒</button>
                 </div>
                 <span class="sub-link" onclick="switchView('login')">العودة للدخول 🔙</span>
             </div>
         </div>
 
-        <!-- شاشة الطالب الديناميكية -->
+        <!-- شاشة الطالب -->
         <div id="platformBox" class="app-card-3d hidden" style="text-align: center;">
-            <h1 id="pTitle" style="font-size: 22px; margin-bottom: 5px;">منصة المواد الأدبية</h1>
-            <p>أهلاً بك يا بطل في القمة</p>
-            <div style="background: var(--input-bg); padding: 15px; border-radius: 16px; margin-top: 15px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,255,255,0.08);">
-                <div style="font-size: 13.5px;">الطالب: <strong id="pName" style="color:var(--accent);"></strong></div>
+            <h2 style="font-size: 20px;">منصة الأستاذ رمضان عطية</h2>
+            <p>أهلاً بك يا بطل</p>
+            <div style="background: var(--input-bg); padding: 12px; border-radius: 12px; margin-top: 15px; display: flex; justify-content: space-between; align-items: center;">
+                <div style="font-size: 13px;">الطالب: <strong id="pName" style="color:var(--accent);"></strong></div>
                 <button onclick="location.reload()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-weight:bold; font-family:'Tajawal';">خروج 🚪</button>
             </div>
         </div>
 
         <!-- لوحة تحكم الأدمن -->
         <div id="adminDashboard" class="app-card-3d hidden">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                <h2 style="margin:0; font-size:18px;">👑 لوحة تحكم الأستاذ</h2>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <h3 style="margin:0; font-size:16px;">👑 لوحة الأدمن (البيانات كاملة)</h3>
                 <button onclick="closeAdminDashboard()" class="pill-3d" style="color:#ef4444;">إغلاق ❌</button>
             </div>
             <div class="table-box">
@@ -265,40 +217,34 @@
                     <thead>
                         <tr>
                             <th>الاسم</th>
-                            <th>الهاتف</th>
-                            <th>الإيميل</th>
+                            <th>هاتف الطالب</th>
+                            <th>الرقم القومي</th>
+                            <th>ولي الأمر</th>
+                            <th>هاتف ولي الأمر</th>
                             <th>إجراء</th>
                         </tr>
                     </thead>
                     <tbody id="studentsTableBody"></tbody>
                 </table>
             </div>
-            <button class="action-btn-3d" style="margin-top:20px; background:linear-gradient(135deg, #ef4444, #991b1b);" onclick="clearAllData()">حذف كافة بيانات الطلاب 🗑️</button>
+            <button class="action-btn-3d" style="margin-top:15px; background:#ef4444; color:#fff;" onclick="clearAllData()">حذف كافة البيانات 🗑️</button>
         </div>
 
     </div>
 
     <!-- نافذة دخول الأدمن -->
-    <div id="adminModal" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(2,6,18,0.85); display:flex; justify-content:center; align-items:center; z-index:1000; backdrop-filter:blur(20px);">
-        <div class="app-card-3d" style="width: 85%; max-width: 360px;">
-            <h3>دخول الأدمن الخاص 🔐</h3>
-            <div class="field-group" style="margin-top:15px;">
-                <input type="password" id="adminSecretInput" placeholder="كلمة المرور المشفرة">
+    <div id="adminModal" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(5,11,20,0.9); display:flex; justify-content:center; align-items:center; z-index:1000;">
+        <div class="app-card-3d" style="width: 85%; max-width: 340px;">
+            <h3>دخول الأدمن 🔐</h3>
+            <div class="field-group" style="margin-top:12px;">
+                <input type="password" id="adminSecretInput" placeholder="كلمة المرور">
             </div>
-            <button class="action-btn-3d" onclick="verifyAdminLogin()">دخول للوحة التحكم 🚀</button>
-            <button onclick="closeAdminModal()" style="background:none; border:none; color:#ef4444; width:100%; margin-top:15px; cursor:pointer; font-weight:bold; font-family:'Tajawal';">إغلاق</button>
+            <button class="action-btn-3d" onclick="verifyAdminLogin()">دخول 🚀</button>
+            <button onclick="closeAdminModal()" style="background:none; border:none; color:#ef4444; width:100%; margin-top:10px; cursor:pointer; font-weight:bold; font-family:'Tajawal';">إلغاء</button>
         </div>
     </div>
 
     <script>
-        function previewTheme(val) {
-            if(val === 'geo') {
-                document.body.className = 'theme-geo';
-            } else {
-                document.body.className = 'theme-history';
-            }
-        }
-
         function switchView(type) {
             document.getElementById('loginForm').classList.add('hidden');
             document.getElementById('regForm').classList.add('hidden');
@@ -310,7 +256,6 @@
                 document.getElementById('loginForm').classList.remove('hidden');
                 document.getElementById('tabL').classList.add('active');
             } else if(type === 'register') {
-                document.getElementById('regForm').classList.add('hidden'); // تم التصحيح للإظهار
                 document.getElementById('regForm').classList.remove('hidden');
                 document.getElementById('tabR').classList.add('active');
             } else if(type === 'forgot') {
@@ -325,22 +270,24 @@
         function register() {
             const name = document.getElementById('rName').value.trim();
             const phone = document.getElementById('rPhone').value.trim();
+            const nid = document.getElementById('rNID').value.trim();
+            const parentName = document.getElementById('rPName').value.trim();
+            const parentPhone = document.getElementById('rPPhone').value.trim();
             const email = document.getElementById('rEmail').value.trim();
             const pass = document.getElementById('rPass').value.trim();
-            const subj = document.getElementById('rSubj').value;
 
-            if(!name || !phone || !email || !pass) {
+            if(!name || !phone || !nid || !parentName || !parentPhone || !pass) {
                 alert('املأ كافة الحقول الإجبارية!');
                 return;
             }
 
             let students = getStudents();
-            if(students.some(s => s.phone === phone)) {
-                alert('رقم الهاتف مسجل مسبقاً!');
+            if(students.some(s => s.phone === phone || s.nid === nid)) {
+                alert('رقم الهاتف أو الرقم القومي مسجل مسبقاً!');
                 return;
             }
 
-            const newStudent = { name, phone, email, pass, subj };
+            const newStudent = { name, phone, nid, parentName, parentPhone, email, pass };
             students.push(newStudent);
             localStorage.setItem('rt_all_students', JSON.stringify(students));
             
@@ -349,54 +296,40 @@
         }
 
         let generatedOTP = '';
-        let targetStudentEmail = '';
+        let targetEmail = '';
 
-        function sendRealOTP() {
+        function sendOTP() {
             const email = document.getElementById('fEmail').value.trim();
             let students = getStudents();
             const student = students.find(s => s.email === email);
 
             if(!student) {
-                alert('البريد الإلكتروني غير مسجل في قاعدة البيانات!');
+                alert('البريد الإلكتروني غير مسجل!');
                 return;
             }
 
             generatedOTP = Math.floor(1000 + Math.random() * 9000).toString();
-            targetStudentEmail = email;
+            targetEmail = email;
 
-            // إرسال الكود عبر بريد حقيقي (مربوط بـ EmailJS)
-            /*
-            emailjs.send("service_id", "template_id", {
-                to_email: email,
-                otp_code: generatedOTP,
-                to_name: student.name
-            });
-            */
-
-            alert('تم إرسال رمز التحقق (OTP) إلى بريدك الإلكتروني بنجاح!');
+            alert('تم إرسال كود التحقق (OTP) إلى بريدك الإلكتروني بنجاح!');
             document.getElementById('otpStep').classList.remove('hidden');
         }
 
-        function resetPasswordWithOTP() {
-            const enteredOtp = document.getElementById('fOtpInput').value.trim();
+        function resetPassword() {
+            const otp = document.getElementById('fOtpInput').value.trim();
             const newPass = document.getElementById('fNewPass').value.trim();
 
-            if(enteredOtp !== generatedOTP) {
+            if(otp !== generatedOTP) {
                 alert('رمز التحقق غير صحيح!');
                 return;
             }
 
-            if(!newPass) {
-                alert('أدخل كلمة السر الجديدة!');
-                return;
-            }
-
             let students = getStudents();
-            let student = students.find(s => s.email === targetStudentEmail);
+            let student = students.find(s => s.email === targetEmail);
             if(student) {
                 student.pass = newPass;
                 localStorage.setItem('rt_all_students', JSON.stringify(students));
-                alert('تم تغيير كلمة السر بنجاح! سجل دخولك الآن.');
+                alert('تم تغيير كلمة السر بنجاح!');
                 switchView('login');
             }
         }
@@ -410,7 +343,7 @@
             if(st) {
                 launchPlatform(st);
             } else {
-                alert('رقم الهاتف أو كلمة السر غير صحيحة!');
+                alert('رقم الهاتف أو كلمة السر خطأ!');
             }
         }
 
@@ -418,14 +351,6 @@
             document.getElementById('authBox').classList.add('hidden');
             document.getElementById('platformBox').classList.remove('hidden');
             document.getElementById('pName').innerText = st.name;
-            
-            // ضبط الثيم 3D بناءً على مادة الطالب
-            previewTheme(st.subj);
-            if(st.subj === 'geo') {
-                document.getElementById('pTitle').innerText = 'منصة الجغرافيا السياسية 🌍';
-            } else {
-                document.getElementById('pTitle').innerText = 'منصة التاريخ الملكي 📜';
-            }
         }
 
         function openAdminModal() { document.getElementById('adminModal').classList.remove('hidden'); }
@@ -441,7 +366,7 @@
                 document.getElementById('adminDashboard').classList.remove('hidden');
                 renderAdminTable();
             } else {
-                alert('كلمة مرور الأدمن غير صحيحة!');
+                alert('كلمة المرور خطأ!');
             }
         }
 
@@ -450,7 +375,7 @@
             let tbody = document.getElementById('studentsTableBody');
             tbody.innerHTML = '';
             if(students.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:var(--text-sub);">لا توجد تسجيلات حتى الآن</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--text-sub);">لا توجد تسجيلات</td></tr>`;
                 return;
             }
             students.forEach((st, index) => {
@@ -458,8 +383,10 @@
                     <tr>
                         <td>${st.name}</td>
                         <td>${st.phone}</td>
-                        <td>${st.email}</td>
-                        <td><button onclick="deleteStudent(${index})" style="background:#ef4444; color:#fff; border:none; padding:4px 8px; border-radius:6px; cursor:pointer;">حذف</button></td>
+                        <td>${st.nid}</td>
+                        <td>${st.parentName}</td>
+                        <td>${st.parentPhone}</td>
+                        <td><button onclick="deleteStudent(${index})" style="background:#ef4444; color:#fff; border:none; padding:4px 8px; border-radius:4px; cursor:pointer;">حذف</button></td>
                     </tr>
                 `;
             });
@@ -473,7 +400,7 @@
         }
 
         function clearAllData() {
-            if(confirm('هل أنت متأكد من حذف كافة بيانات الطلاب؟')) {
+            if(confirm('متأكد من مسح الكل؟')) {
                 localStorage.removeItem('rt_all_students');
                 renderAdminTable();
             }
