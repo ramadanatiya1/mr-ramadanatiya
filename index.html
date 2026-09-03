@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الأستاذ رمضان عطية</title>
-    <!-- خطوط أبل الرسمية SF Pro -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;900&display=swap" rel="stylesheet">
+    <title>منصة الأستاذ رمضان عطية | النظام التعليمي المتطور</title>
+    <!-- استدعاء خطوط أبل الأصلية وتصميم ناعم -->
     <style>
         @font-face {
             font-family: 'SF Pro Display';
@@ -14,14 +13,28 @@
 
         :root {
             --bg-deep: #050b14;
-            --card-surface: rgba(13, 22, 38, 0.85);
-            --card-border: rgba(255, 255, 255, 0.1);
+            --card-surface: rgba(13, 22, 38, 0.9);
+            --card-border: rgba(255, 255, 255, 0.12);
             --text-main: #f8fafc;
             --text-sub: #94a3b8;
-            --accent: #f59e0b;
+            --accent: #f59e0b; /* افتراضي التاريخ (ذهبي ملكي) */
             --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            --input-bg: rgba(5, 11, 20, 0.9);
-            --shadow-3d: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            --input-bg: rgba(5, 11, 20, 0.95);
+            --shadow-3d: 0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 30px rgba(245, 158, 11, 0.15);
+        }
+
+        /* تحويل ديناميكي لحرارة الثيم حسب المادة المختارة */
+        body.theme-history {
+            --accent: #f59e0b;
+            --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
+            background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #050b14 75%);
+        }
+
+        body.theme-geo {
+            --accent: #0ea5e9;
+            --accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%);
+            background: radial-gradient(circle at 50% 0%, #082f49 0%, #050b14 75%);
+            --shadow-3d: 0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 30px rgba(14, 165, 233, 0.15);
         }
 
         * { box-sizing: border-box; }
@@ -29,13 +42,14 @@
         body {
             background-color: var(--bg-deep);
             color: var(--text-main);
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, "Tajawal", sans-serif;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            transition: background 0.5s ease;
         }
 
         .wrapper { width: 100%; max-width: 440px; }
@@ -43,83 +57,93 @@
         .app-card-3d {
             background: var(--card-surface);
             backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border: 1px solid var(--card-border);
-            border-top: 4px solid var(--accent);
+            border-top: 5px solid var(--accent);
             border-radius: 28px;
-            padding: 30px 20px;
+            padding: 25px 20px;
             box-shadow: var(--shadow-3d);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
         }
 
         h2, h3 {
-            font-family: 'Tajawal', sans-serif;
+            font-family: inherit;
             color: var(--accent);
             text-align: center;
             margin-top: 0;
-            font-weight: 900;
+            font-weight: 800;
+            letter-spacing: -0.3px;
         }
 
         p { color: var(--text-sub); text-align: center; font-size: 13px; margin-bottom: 20px; }
 
         .switcher-3d {
             display: flex; background: var(--input-bg); border-radius: 14px; padding: 4px; margin-bottom: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.06);
         }
 
         .switch-btn-3d {
-            flex: 1; background: transparent; border: none; padding: 10px; color: var(--text-sub);
-            font-family: 'Tajawal', sans-serif; font-weight: 700; font-size: 13px; cursor: pointer; border-radius: 10px; transition: 0.3s;
+            flex: 1; background: transparent; border: none; padding: 11px; color: var(--text-sub);
+            font-family: inherit; font-weight: 700; font-size: 13px; cursor: pointer; border-radius: 10px; transition: 0.3s;
         }
-        .switch-btn-3d.active { background: var(--accent-gradient); color: #050b14; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); }
+        .switch-btn-3d.active { 
+            background: var(--accent-gradient); 
+            color: #ffffff; 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); 
+        }
 
-        .field-group { margin-bottom: 12px; }
+        .field-group { margin-bottom: 14px; }
 
         label {
-            display: block; font-size: 11.5px; color: var(--accent); margin-bottom: 5px;
-            font-family: 'Tajawal', sans-serif; font-weight: 700; text-align: right;
+            display: block; font-size: 12px; color: var(--accent); margin-bottom: 5px;
+            font-weight: 700; text-align: right; transition: color 0.3s;
         }
 
         input, select {
-            width: 100%; padding: 12px 14px; background: var(--input-bg);
+            width: 100%; padding: 13px 15px; background: var(--input-bg);
             border: 1px solid rgba(255, 255, 255, 0.08); color: var(--text-main);
-            border-radius: 12px; font-size: 14px; font-family: inherit; outline: none; transition: 0.3s;
+            border-radius: 14px; font-size: 14px; font-family: inherit; outline: none; transition: 0.3s;
         }
-        input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 12px rgba(245, 158, 11, 0.25); }
+        input:focus, select:focus { 
+            border-color: var(--accent); 
+            box-shadow: 0 0 15px var(--accent); 
+        }
 
         .action-btn-3d {
-            background: var(--accent-gradient); color: #050b14; border: none; padding: 14px; width: 100%;
-            border-radius: 12px; font-weight: 900; cursor: pointer; font-size: 15px; font-family: 'Tajawal', sans-serif;
-            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.25); transition: 0.3s; margin-top: 5px;
+            background: var(--accent-gradient); color: #ffffff; border: none; padding: 15px; width: 100%;
+            border-radius: 14px; font-weight: 800; cursor: pointer; font-size: 15px; font-family: inherit;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); transition: 0.3s; margin-top: 5px;
         }
-        .action-btn-3d:hover { filter: brightness(1.05); }
+        .action-btn-3d:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
         .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 0 5px; }
         .pill-3d {
-            background: var(--card-surface); border: 1px solid rgba(255, 255, 255, 0.1); color: var(--text-main);
-            padding: 6px 14px; border-radius: 18px; cursor: pointer; font-size: 12px; font-family: 'Tajawal', sans-serif; font-weight: 700;
+            background: var(--card-surface); border: 1px solid rgba(255, 255, 255, 0.12); color: var(--text-main);
+            padding: 6px 14px; border-radius: 18px; cursor: pointer; font-size: 12px; font-weight: 700;
         }
 
         .table-box { width: 100%; overflow-x: auto; margin-top: 15px; }
         table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: right; }
         th, td { padding: 10px 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
-        th { color: var(--accent); font-family: 'Tajawal'; }
+        th { color: var(--accent); }
 
-        .sub-link { color: var(--accent); text-align: center; font-size: 12px; cursor: pointer; margin-top: 10px; font-family: 'Tajawal'; display: block; font-weight: 700; }
+        .sub-link { color: var(--accent); text-align: center; font-size: 12px; cursor: pointer; margin-top: 12px; display: block; font-weight: 700; }
         .hidden { display: none !important; }
     </style>
 </head>
-<body>
+<body class="theme-history">
 
     <div class="wrapper">
         
         <div class="top-nav">
             <span style="font-size: 12px; color: var(--text-sub); font-weight: 600;">منصة الأستاذ / رمضان عطية</span>
-            <button class="pill-3d" onclick="openAdminModal()">⚙️ الآدمن</button>
+            <button class="pill-3d" onclick="openAdminModal()">⚙️ لوحة الأدمن</button>
         </div>
 
         <!-- بوابة الطلاب -->
         <div id="authBox" class="app-card-3d">
             <h2>بوابة الطلاب الذكية 🎓</h2>
-            <p>سجل بياناتك كاملة للمتابعة</p>
+            <p>سجل بياناتك كاملة للمتابعة والانغماس في النظام</p>
 
             <div class="switcher-3d">
                 <button class="switch-btn-3d active" id="tabL" onclick="switchView('login')">تسجيل الدخول 🔓</button>
@@ -140,8 +164,15 @@
                 <span class="sub-link" onclick="switchView('forgot')">نسيت كلمة السر؟ 🔑</span>
             </div>
 
-            <!-- طالب جديد (بالبيانات الكاملة) -->
+            <!-- طالب جديد (بالبيانات الكاملة وتحديد المادة ديناميكياً) -->
             <div id="regForm" class="hidden">
+                <div class="field-group">
+                    <label>اختر المادة الدراسية (يتغير الثيم تلقائياً)</label>
+                    <select id="rSubj" onchange="changeTheme(this.value)">
+                        <option value="history">التاريخ (النظام الملكي الذهبي) 📜</option>
+                        <option value="geo">الجغرافيا السياسية (نظام الفضاء السيادي) 🌍</option>
+                    </select>
+                </div>
                 <div class="field-group">
                     <label>اسم الطالب الكامل</label>
                     <input type="text" id="rName" placeholder="ثلاثي أو رباعي">
@@ -170,7 +201,7 @@
                     <label>كلمة السر</label>
                     <input type="password" id="rPass" placeholder="اختر كلمة سر">
                 </div>
-                <button class="action-btn-3d" onclick="register()">إنشاء الحساب ✨</button>
+                <button class="action-btn-3d" onclick="register()">إنشاء الحساب الان ✨</button>
             </div>
 
             <!-- استعادة كلمة السر -->
@@ -198,11 +229,11 @@
 
         <!-- شاشة الطالب -->
         <div id="platformBox" class="app-card-3d hidden" style="text-align: center;">
-            <h2 style="font-size: 20px;">منصة الأستاذ رمضان عطية</h2>
-            <p>أهلاً بك يا بطل</p>
-            <div style="background: var(--input-bg); padding: 12px; border-radius: 12px; margin-top: 15px; display: flex; justify-content: space-between; align-items: center;">
+            <h2 id="platformTitle" style="font-size: 20px;">منصة الأستاذ رمضان عطية</h2>
+            <p>أهلاً بك يا بطل في قمة التفوق</p>
+            <div style="background: var(--input-bg); padding: 15px; border-radius: 14px; margin-top: 15px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,255,255,0.08);">
                 <div style="font-size: 13px;">الطالب: <strong id="pName" style="color:var(--accent);"></strong></div>
-                <button onclick="location.reload()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-weight:bold; font-family:'Tajawal';">خروج 🚪</button>
+                <button onclick="location.reload()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-weight:bold;">خروج 🚪</button>
             </div>
         </div>
 
@@ -216,8 +247,9 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>المادة</th>
                             <th>الاسم</th>
-                            <th>هاتف الطالب</th>
+                            <th>الهاتف</th>
                             <th>الرقم القومي</th>
                             <th>ولي الأمر</th>
                             <th>هاتف ولي الأمر</th>
@@ -227,24 +259,32 @@
                     <tbody id="studentsTableBody"></tbody>
                 </table>
             </div>
-            <button class="action-btn-3d" style="margin-top:15px; background:#ef4444; color:#fff;" onclick="clearAllData()">حذف كافة البيانات 🗑️</button>
+            <button class="action-btn-3d" style="margin-top:15px; background:linear-gradient(135deg, #ef4444, #991b1b);" onclick="clearAllData()">حذف كافة البيانات 🗑️</button>
         </div>
 
     </div>
 
     <!-- نافذة دخول الأدمن -->
-    <div id="adminModal" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(5,11,20,0.9); display:flex; justify-content:center; align-items:center; z-index:1000;">
+    <div id="adminModal" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(5,11,20,0.92); display:flex; justify-content:center; align-items:center; z-index:1000; backdrop-filter:blur(15px);">
         <div class="app-card-3d" style="width: 85%; max-width: 340px;">
             <h3>دخول الأدمن 🔐</h3>
             <div class="field-group" style="margin-top:12px;">
                 <input type="password" id="adminSecretInput" placeholder="كلمة المرور">
             </div>
             <button class="action-btn-3d" onclick="verifyAdminLogin()">دخول 🚀</button>
-            <button onclick="closeAdminModal()" style="background:none; border:none; color:#ef4444; width:100%; margin-top:10px; cursor:pointer; font-weight:bold; font-family:'Tajawal';">إلغاء</button>
+            <button onclick="closeAdminModal()" style="background:none; border:none; color:#ef4444; width:100%; margin-top:10px; cursor:pointer; font-weight:bold;">إلغاء</button>
         </div>
     </div>
 
     <script>
+        function changeTheme(val) {
+            if(val === 'geo') {
+                document.body.className = 'theme-geo';
+            } else {
+                document.body.className = 'theme-history';
+            }
+        }
+
         function switchView(type) {
             document.getElementById('loginForm').classList.add('hidden');
             document.getElementById('regForm').classList.add('hidden');
@@ -268,6 +308,7 @@
         }
 
         function register() {
+            const subj = document.getElementById('rSubj').value;
             const name = document.getElementById('rName').value.trim();
             const phone = document.getElementById('rPhone').value.trim();
             const nid = document.getElementById('rNID').value.trim();
@@ -287,7 +328,7 @@
                 return;
             }
 
-            const newStudent = { name, phone, nid, parentName, parentPhone, email, pass };
+            const newStudent = { subj, name, phone, nid, parentName, parentPhone, email, pass };
             students.push(newStudent);
             localStorage.setItem('rt_all_students', JSON.stringify(students));
             
@@ -351,6 +392,8 @@
             document.getElementById('authBox').classList.add('hidden');
             document.getElementById('platformBox').classList.remove('hidden');
             document.getElementById('pName').innerText = st.name;
+            changeTheme(st.subj || 'history');
+            document.getElementById('platformTitle').innerText = st.subj === 'geo' ? 'منصة الجغرافيا السياسية 🌍' : 'منصة التاريخ 📜';
         }
 
         function openAdminModal() { document.getElementById('adminModal').classList.remove('hidden'); }
@@ -375,12 +418,14 @@
             let tbody = document.getElementById('studentsTableBody');
             tbody.innerHTML = '';
             if(students.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--text-sub);">لا توجد تسجيلات</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:var(--text-sub);">لا توجد تسجيلات حتى الآن</td></tr>`;
                 return;
             }
             students.forEach((st, index) => {
+                let subjText = st.subj === 'geo' ? 'جغرافيا 🌍' : 'تاريخ 📜';
                 tbody.innerHTML += `
                     <tr>
+                        <td>${subjText}</td>
                         <td>${st.name}</td>
                         <td>${st.phone}</td>
                         <td>${st.nid}</td>
@@ -400,7 +445,7 @@
         }
 
         function clearAllData() {
-            if(confirm('متأكد من مسح الكل؟')) {
+            if(confirm('متأكد من مسح كافة بيانات الطلاب؟')) {
                 localStorage.removeItem('rt_all_students');
                 renderAdminTable();
             }
